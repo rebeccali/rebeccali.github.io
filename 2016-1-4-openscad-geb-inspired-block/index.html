@@ -2,45 +2,58 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Photography: Neerja - Rebecca Li</title>
+	<title>OpenSCAD GEB-Inspired Block - Rebecca Li</title>
 
   <meta content="Rebecca Li" property="og:site_name">
   
-    <meta content="Photography: Neerja" property="og:title">
+    <meta content="OpenSCAD GEB-Inspired Block" property="og:title">
   
   
     <meta content="article" property="og:type">
   
   
-    <meta content="My friend Neerja. Copyright Rebecca Li." property="og:description">
+    <meta content="robotics enthusiast
+" property="og:description">
   
   
-    <meta content="htttp://rebecca.li/photography/neerja/" property="og:url">
+    <meta content="htttp://rebecca.li/2016-1-4-openscad-geb-inspired-block/" property="og:url">
   
+  
+    <meta content="2015-12-11T00:00:00+00:00" property="article:published_time">
+    <meta content="htttp://rebecca.li/about/" property="article:author">
   
   
     <meta content="/img/david-freeman.jpg" property="og:image">
   
   
+    
+  
+  
+    
+    <meta content="projects" property="article:tag">
+    
+    <meta content="art" property="article:tag">
+    
   
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@site_username">
   <meta name="twitter:creator" content="@creator_username">
   
-    <meta name="twitter:title" content="Photography: Neerja">
+    <meta name="twitter:title" content="OpenSCAD GEB-Inspired Block">
   
   
-    <meta name="twitter:url" content="htttp://rebecca.li/photography/neerja/">
+    <meta name="twitter:url" content="htttp://rebecca.li/2016-1-4-openscad-geb-inspired-block/">
   
   
-    <meta name="twitter:description" content="My friend Neerja. Copyright Rebecca Li.">
+    <meta name="twitter:description" content="robotics enthusiast
+">
   
   
     <meta name="twitter:image:src" content="htttp://rebecca.li/path/to/image/logo.png">
   
 
-	<meta name="description" content="My friend Neerja. Copyright Rebecca Li.">
+	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta property="og:image" content="">
@@ -109,69 +122,47 @@
   <article class="article-page">
   <div class="page-content">
     
+    <div class="page-cover-image">
+      <img class="page-image" src=/img/lovehaterender.png alt="OpenSCAD GEB-Inspired Block">
+    </div> <!-- End Page Cover Image -->
     
     <div class="wrap-content">
       <header class="header-page">
-        <h1 class="page-title">Photography: Neerja</h1>
-        <div class="page-date"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+        <h1 class="page-title">OpenSCAD GEB-Inspired Block</h1>
+        <div class="page-date"><span>2015, Dec 11&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
       </header>
-      <div class="gallery-description">
-    
-      <p>My friend Neerja. Copyright Rebecca Li.</p>
-    
-  </div>
+      <p>This is a block that I made with <a href="http://www.openscad.org/">OpenSCAD, a code-based 3D solid modeler</a>. The block is two words - love and hate - on different sides of the block such that you can only read one from any given side. The first version I made was in Rhino and promptly lost to a spontaneous system wipe. The new version is all parametric, woo~</p>
 
-<div class="gallery-image-wrapper">
-  
-    <a name="large-LYC_5766.png"></a>
-    <a href="large-LYC_5766.png">
-        <img class="gallery-image" src="thumbs/large-LYC_5766.png" />
-    </a>
-  
-    <a name="large-LYC_5823.png"></a>
-    <a href="large-LYC_5823.png">
-        <img class="gallery-image" src="thumbs/large-LYC_5823.png" />
-    </a>
-  
-    <a name="large-LYC_5920.png"></a>
-    <a href="large-LYC_5920.png">
-        <img class="gallery-image" src="thumbs/large-LYC_5920.png" />
-    </a>
-  
-    <a name="large-LYC_5940.png"></a>
-    <a href="large-LYC_5940.png">
-        <img class="gallery-image" src="thumbs/large-LYC_5940.png" />
-    </a>
-  
-    <a name="large-LYC_5995.png"></a>
-    <a href="large-LYC_5995.png">
-        <img class="gallery-image" src="thumbs/large-LYC_5995.png" />
-    </a>
-  
-    <a name="large-LYC_6011.png"></a>
-    <a href="large-LYC_6011.png">
-        <img class="gallery-image" src="thumbs/large-LYC_6011.png" />
-    </a>
-  
-    <a name="process4-LYC_6103.png"></a>
-    <a href="process4-LYC_6103.png">
-        <img class="gallery-image" src="thumbs/process4-LYC_6103.png" />
-    </a>
-  
-    <a name="upsidedown.png"></a>
-    <a href="upsidedown.png">
-        <img class="gallery-image" src="thumbs/upsidedown.png" />
-    </a>
-  
-</div>
+<p><img src="/img/lovehatecompiulation.png" alt="ABC XYZ block" /> <small>Block with dual words</small></p>
+
+<p><a href="http://www.openscad.org/">OpenSCAD</a> uses a set of primitive shapes (cubes, spheres) and boolean operations (union, difference, intersection) in order to make a complex shape. For this model, <a href="http://www.openscad.org/">OpenSCAD</a> has an additional font primitive which this model takes advantage of. It is the intersection of “LOVE” and “HATE” rotated about the same axes. The basic code is below:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>font = "Consolas:style=Bold";
+
+intersection() {
+    rotate(90, [1, 0, 0])   linear_extrude(height=1) text("LOVE", font = font, size = 1, spacing=.7);
+    translate ([0,-1, 0])   linear_extrude(height=1) text("HATE", font = font, size = 1, spacing=.7);
+}
+</code></pre></div></div>
+
+<p>It was inspired by the Godel Escher Bach book cover, which is a book written a little too much in a Malcolm Gladwell-esque style for me to read past the first few pages. Maybe one day I will go read it and not have this opinion.</p>
+
+<p><img src="/img/geb.jpg" alt="Godel Escher Bach" /><small>Godel Escher Bach Cover (<a href="https://books.google.com/books/about/G%C3%B6del_Escher_Bach_Anniversary_Edition.html?id=aFcsnUEewLkC&amp;source=kp_cover">Source</a>)</small></p>
+
+<p>You can find all my strange OpenSCAD projects on my <a href="https://github.com/rebeccali/openscad">Github repo</a>.</p>
+
 
       <div class="page-footer">
         <div class="page-share">
-          <a href="https://twitter.com/intent/tweet?text=Photography: Neerja&url=htttp://rebecca.li/photography/neerja/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
-          <a href="https://facebook.com/sharer.php?u=htttp://rebecca.li/photography/neerja/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
-          <a href="https://plus.google.com/share?url=htttp://rebecca.li/photography/neerja/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+          <a href="https://twitter.com/intent/tweet?text=OpenSCAD GEB-Inspired Block&url=htttp://rebecca.li/2016-1-4-openscad-geb-inspired-block/" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=htttp://rebecca.li/2016-1-4-openscad-geb-inspired-block/" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=htttp://rebecca.li/2016-1-4-openscad-geb-inspired-block/" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
         </div>
         <div class="page-tag">
+          
+            <a href="/tags#projects" class="tag">&#35; projects</a>
+          
+            <a href="/tags#art" class="tag">&#35; art</a>
           
         </div>
       </div>

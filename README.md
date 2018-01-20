@@ -11,20 +11,11 @@ Now appropriated by rebecca li
 - Support Emoji
 
 ## Installation:
-Make sure you have the following installed:
-
-* `ruby`
-* `rubygems`
-
-Make sure you have the following `gems` installed:
-
-* `jekyll`
-* `bundler`
+Run `sudo bash setup_scripts/install_all.sh`
 
 Now, run the following:
 
 ```
-bundle install
 bundle exec jekyll build
 bundle exec jekyll serve
 ```
