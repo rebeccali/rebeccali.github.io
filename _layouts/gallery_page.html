@@ -1,0 +1,20 @@
+---
+layout: post
+---
+
+  <div class="gallery-description">
+    {% if page.description %}
+      <p>{{ page.description }}</p>
+    {% endif %}
+  </div>
+
+
+
+<div class="gallery-image-wrapper">
+  {% for image in page.images %}
+    <a name="{{ image.name }}"></a>
+    <a href="{{ image.name }}"{% if site.gallery.lightbox %} rel="lightbox[{{ page.gallery }}]"{% endif %}>
+        <img class="gallery-image" src="thumbs/{{ image.name }}" />
+    </a>
+  {% endfor %}
+</div>

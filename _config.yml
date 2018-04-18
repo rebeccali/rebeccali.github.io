@@ -1,0 +1,64 @@
+---
+title: Rebecca Li
+timezone: UTC
+collections:
+  posts:
+    title: Posts
+    output: true
+  uploads:
+    title: Uploads
+    output: true
+description: 'robotics enthusiast
+
+'
+
+permalink: ":title/"
+baseurl: ''
+url: htttp://rebecca.li
+author: Rebecca Li
+author-img: og-image.jpg
+about-author: Robotics Enthusiast
+github: rebeccali
+email: rebecca@mit.edu
+safe: false
+discus-identifier: rebeccali
+analytics:
+markdown: kramdown
+plugins_dir:
+- _plugins
+- jekyll-sitemap
+- jekyll-paginate
+- jekyll-gallery-generator
+paginate: 8
+paginate_path: "/page/:num"
+exclude:
+- node_modules
+- gulpfile.js
+- package.json
+- yarn.lock
+gallery:
+  dir: photography
+  symlink: false
+  title: Photography
+  title_prefix: 'Photography: '
+  sort_field: date_time
+  thumbnail_size:
+    x: 400
+    y: 400
+  galleries:
+    random:
+      best_image: cows.png
+      info:
+        desc: UnsortedImages, 2017. Copyright Rebecca Li.
+    neerja:
+      best_image: large-LYC_5995.png
+      info:
+        desc: My friend Neerja. Copyright Rebecca Li.
+    iceland:
+      best_image: chair.jpg
+      info:
+        desc: Iceland, 2017. Copyright Rebecca Li.
+    central_park:
+      best_image: bigbird.jpg
+      info:
+        desc: Central Park, 2017. Copyright Rebecca Li.
