@@ -20,6 +20,13 @@ bundle exec jekyll build
 bundle exec jekyll serve
 ```
 
+If you update the galleries, then right now it kind of sucks and you should copy over the photography folder from `_site` to the top level and commit it. You also have to update the `_config.yml`.
+
+```
+bundle exec jekyll build
+cp -r _site/photography/* photography/
+```
+
 ## Todo
 
 * Add About Page
