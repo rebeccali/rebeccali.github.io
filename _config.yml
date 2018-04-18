@@ -1,13 +1,6 @@
 ---
 title: Rebecca Li
 timezone: UTC
-collections:
-  posts:
-    title: Posts
-    output: true
-  uploads:
-    title: Uploads
-    output: true
 description: 'robotics enthusiast
 
 '
@@ -20,7 +13,7 @@ author-img: og-image.jpg
 about-author: Robotics Enthusiast
 github: rebeccali
 email: rebecca@mit.edu
-safe: false
+# safe: false
 discus-identifier: rebeccali
 analytics:
 markdown: kramdown
