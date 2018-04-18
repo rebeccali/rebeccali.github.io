@@ -24,7 +24,7 @@ This is a list of resources of things which I find useful, want to find useful, 
 * [Intro to Linear Dynamical Systems (class)](https://see.stanford.edu/Course/EE263). This is on my To-do.
 * [Algebra, Topology, Differential Calculus, and Optimization theory for Computer Science and Engineering](https://www.cis.upenn.edu/~jean/math-basics.pdf). A massive tome from University of Pennsylvania which seems to cover most things in mathematics you might want to know as an engineer.
 * [A description of L-0 to L-Infinity norms](https://rorasa.wordpress.com/2012/05/13/l0-norm-l1-norm-l2-norm-l-infinity-norm/)
-* Strogatz - __Nonlinear Dynamics and Chaos__. Suggested by Laurens Gunnarsen, as well as Strogatz's [Stanford course with online lectures](https://www.youtube.com/playlist?list=PLbN57C5Zdl6j_qJA-pARJnKsmROzPnO9V).
+* Strogatz - __Nonlinear Dynamics and Chaos__. Suggested by Laurens Gunnarsen, as well as Strogatz's [Cornell course with online lectures](https://www.youtube.com/playlist?list=PLbN57C5Zdl6j_qJA-pARJnKsmROzPnO9V).
 
 # Aerodynamics
 
