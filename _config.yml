@@ -55,3 +55,7 @@ gallery:
       best_image: bigbird.jpg
       info:
         desc: Central Park, 2017. Copyright Rebecca Li.
+    tiny_studio:
+      best_image: big.jpg
+      info:
+        desc: Tiny flower studio, 2018. Copyright Rebecca Li.
