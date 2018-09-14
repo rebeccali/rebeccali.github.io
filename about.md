@@ -3,9 +3,9 @@ title: About
 layout: main
 ---
 
-I grew up in Milwaukee, WI with music and video games. After getting my BS in Mechanical Engineering at MIT in 2017, I moved to Palo Alto, CA. I worked for [Kitty Hawk][kittyhawk] as a controls engineer. We made an amazing Vertical Takeoff and Landing (VTOL) electric aircraft together that cemented my love of flying and contorls. It also introduced me to Haskell and the greater functional programming space, which I am reluctant to leave. She is now pursuing her Ph.D. at the University of Pennsylvania under [Dr. Vijay Kumar][kumarlab] and [Dr. Mark Yim][modlab].
+I grew up in Milwaukee, WI with music and video games. After getting my BS in Mechanical Engineering at MIT in 2017, I moved to Palo Alto, CA. I worked for [Kitty Hawk][kittyhawk] as a controls engineer. I worked on various control systems and software for a Vertical Takeoff and Landing (VTOL) electric aircraft that cemented my love of flying and controls. It also introduced me to Haskell and the greater functional programming space, which I am reluctant to leave. I am now pursuing my Ph.D. at the University of Pennsylvania under [Dr. Vijay Kumar][kumarlab] and [Dr. Mark Yim][modlab].
 
-As an amateur, she is currently learning guitar, photography, and eventually mountaineering. Past projects she wish she had more time for include photography, BattleBots(tm), electric vehicles, power electronics, classical guitar, violin, piano, kites, hiking, rock climbing, web design, jiu jitsu, and painting.
+As an amateur, I am currently learning guitar, photography, and eventually mountaineering. Past projects I wish I had more time for include photography, BattleBots(tm), electric vehicles, power electronics, classical guitar, violin, piano, kites, hiking, rock climbing, web design, jiu jitsu, and painting.
 
 ### Random Project Ideas
 This is an ongoing list of completely random project ideas unrelated to my professional work. If you happen to build one of these, let me know! I would love to see it.
