@@ -19,7 +19,7 @@ markdown: kramdown
 plugins_dir:
 - _plugins
 - jekyll-sitemap
-- jekyll-paginate-v2
+- jekyll-paginate
 - jekyll-gallery-generator
 paginate: 10
 paginate_path: "/blog/page:num/"
