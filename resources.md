@@ -14,8 +14,7 @@ This is a list of resources of things which I find useful, want to find useful, 
 * [Extended Kalman Filter, the Interactive tutorial](https://home.wlu.edu/~levys/kalman_tutorial/)
 * Gibbs, __Advanced Kalman Filtering, Least Squares, and Modeling: A Practical Handbook__
 * [Wan, van der Merwe - “The Unscented Kalman Filter for Least Squares Estimation”](https://www.seas.harvard.edu/courses/cs281/papers/unscented.pdf)
-* [Kalman and Baysian Filters in Python]
-(https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python). A fun iPython notebook for exploring this.
+* [Kalman and Baysian Filters in Python](https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python) . A fun iPython notebook for exploring this.
 
 # Convex Optimization
 * [GPKit](https://gpkit.readthedocs.io/en/latest/) - A cool convex optimization tool for design. By the very wonderful and talented Ned Burnell.

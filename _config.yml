@@ -1,8 +1,7 @@
 ---
 title: Rebecca Li
 timezone: UTC
-description: 'robotics enthusiast
-
+description: 'post-modern roboticist
 '
 
 permalink: ":title/"
@@ -10,9 +9,9 @@ baseurl: ''
 url: htttp://rebecca.li
 author: Rebecca Li
 author-img: og-image.jpg
-about-author: Robotics Enthusiast
+about-author: Post-modern Roboticist
 github: rebeccali
-email: rebecca@mit.edu
+# email: rebecca@mit.edu
 # safe: false
 discus-identifier: rebeccali
 analytics:
@@ -20,9 +19,25 @@ markdown: kramdown
 plugins_dir:
 - _plugins
 - jekyll-sitemap
-- jekyll-paginate
+- jekyll-paginate-v2
 - jekyll-gallery-generator
-paginate: 8
+pagination:
+
+  # Site-wide kill switch, disabled here it doesn't run at all
+  enabled: true
+
+  # Set to 'true' to enable pagination debugging. This can be enabled in the site config or only for individual pagination pages
+  debug: false
+
+  # The default document collection to paginate if nothing is specified ('posts' is default)
+  # collection: 'posts'
+
+  sort_field: 'date'
+  sort_reverse: 'true'
+
+  # How many objects per paginated page, used to be `paginate` (default: 0, means all)
+  per_page: 10
+
 paginate_path: "/page/:num"
 exclude:
 - node_modules
