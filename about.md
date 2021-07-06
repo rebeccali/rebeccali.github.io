@@ -9,6 +9,8 @@ I grew up in Milwaukee, WI with music and video games. After getting my BS in Me
 
 As an amateur, I am currently learning guitar, photography, and eventually mountaineering. Past projects I wish I had more time for include BattleBots(tm), electric vehicles, power electronics, classical guitar, violin, piano, kites, hiking, rock climbing, web design, jiu jitsu, and painting.
 
+[Resume](assets/resume-2021-06-04.pdf)
+
 
 [kittyhawk]:        http://kittyhawk.aero
 [flamingoPaper]:    http://google.com
