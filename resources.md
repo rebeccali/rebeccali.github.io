@@ -3,6 +3,7 @@ title: Resources
 layout: post
 ---
 
+Last updated: 2018
 This is a list of resources of things which I find useful, want to find useful, have found useful in the past. If you have a resource which you would like to contribute to the list, let me know. This was inspired by [Laura Deming's Longevity FAQ](https://www.ldeming.com/longevityfaq/).
 
 # Control And Estimation
