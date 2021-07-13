@@ -6,9 +6,9 @@ layout: main
 
 I'm Rebecca. Right now I'm focusing on applying my skills in robotics to solve climate change after leaving my PhD program at UPenn. 
 
-Drop me a line at make[AT]rebecca.li  I'm pretty friendly :)
+Drop me a line at make[AT]rebecca.li
 
-Last Updated: July 2021
+
 
 
 
