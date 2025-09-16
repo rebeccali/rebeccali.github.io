@@ -1,5 +1,5 @@
 ---
-title:Plant Care
+title: Plant Care
 date: 2025-09-15 00:00:00 Z
 tags:
 - art
