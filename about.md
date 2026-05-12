@@ -3,13 +3,14 @@ title: About
 layout: main
 ---
 
-Last Updated: July 2021
+Last Updated: May 2026
 
-I grew up in Milwaukee, WI with music and video games. After getting my BS in Mechanical Engineering at MIT in 2017, I moved to Palo Alto, CA. I worked for [Kitty Hawk][kittyhawk] as a controls engineer. I worked on various control systems and software for a Vertical Takeoff and Landing (VTOL) electric aircraft that cemented my love of flying, controls, and Haskell. I pursued my Ph.D. at the University of Pennsylvania under [Dr. Vijay Kumar][kumarlab] and [Dr. Mark Yim][modlab] from 2018-2021, focusing on incorporating learning into swarm control and safety critical systems. I left with a masters during the pandemic and am now figuring out how best to apply my skills to make the world a better place. If you have thoughts on climate change, medical innovation or global equality drop me a line! 
+I am interested in making the world a wonderful place for the time to come. For the past few years I've focused on doing that by fighting climate change, namely working on bolometers at Commonwealth Fusion Systems. Before that, I did a brief stint (no pun intended) in surgical robotics after dropping out of my PhD at the University of Pennsylvania, where I also studied aerial robotics and machine learning. 
 
-As an amateur, I am currently learning guitar, photography, and eventually mountaineering. Past projects I wish I had more time for include BattleBots(tm), electric vehicles, power electronics, classical guitar, violin, piano, kites, hiking, rock climbing, web design, jiu jitsu, and painting.
+I have a few odd interests between programing languages (Haskell), stats, birding, music, and the Great Outdoors. I am also a serious foodie and deeply enjoy fancy coffee.
 
-[Resume](assets/resume-2021-06-04.pdf)
+If you have thoughts on climate change, tech or policy, or a really good recipe, drop me a line. 
+
 
 
 [kittyhawk]:        http://kittyhawk.aero
