@@ -1,39 +1,51 @@
-# Flexible-Jekyll is a simple and clean theme for Jekyll
+# rebecca.li
 
-Now appropriated by rebecca li
+Single-page personal site. Jekyll on GitHub Pages, served from `master` at the apex
+domain `rebecca.li` (see `CNAME`).
 
-## Features
-
-- [Google Fonts](https://fonts.google.com/)
-- [Font Awesome](http://fontawesome.io/)
-- [Disqus](https://disqus.com/)
-- [Analytics](https://analytics.google.com/analytics/web/)
-- Support Emoji
-
-## Installation:
-Run `sudo bash setup_scripts/install_all.sh`
-
-Now, run the following:
+## Structure
 
 ```
-bundle exec jekyll build
+index.html            The entire site. Content lives here, inline.
+_layouts/default.html Bare HTML shell.
+_includes/head.html   Meta tags, OG/Twitter cards, stylesheet link.
+assets/css/site.css   The stylesheet. Hand-written, no build step.
+assets/resume-*.pdf   Resume, copied in from the resume repo (see below).
+_archive/             Retired blog posts. Not built, not published.
+photography/          Pre-generated gallery HTML from the old site. Still live at
+                      /photography/<gallery>/, deliberately unlinked from the site.
+img/                  Images for the archived posts.
+assets/css/main.css   Legacy stylesheets. The photography galleries load these.
+assets/css/gallery.css  Do not delete.
+assets/fonts/font-awesome/  Ditto — the galleries reference it.
+```
+
+## Local development
+
+Needs Ruby (3.x) and Bundler.
+
+```sh
+bundle install
 bundle exec jekyll serve
 ```
 
-If you update the galleries, then right now it kind of sucks and you should remove the `_site/photography/index.html` file and copy over the photography folder from `_site` to the top level and commit it. You also have to update the `_config.yml`.
+Then open <http://localhost:4000>.
 
+There is no CSS build step — `assets/css/site.css` is edited directly.
+
+## Updating the resume
+
+The resume is authored in LaTeX in a separate repo
+(`rmli_resume_letters/resume/`). After rebuilding the PDF there, copy it in and
+point `resume:` in `_config.yml` at the new filename:
+
+```sh
+cp ../rmli_resume_letters/resume/<new>.pdf assets/resume-rebecca-li-<yyyy-mm>.pdf
 ```
-bundle exec jekyll build
-cp -r _site/photography/* photography/
-```
 
-## Todo
+The on-page Experience section is a fleshed-out superset of the PDF and is
+maintained by hand in `index.html`.
 
-* Add About Page
-* Add Photography Page
-* Fix Image widths
-* Add Portfolio Page
+## Deploying
 
-### License
-
-GNU General Public License v3.0
+GitHub Pages builds from `master`. Merge and push.

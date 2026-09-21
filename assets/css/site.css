@@ -1,0 +1,256 @@
+/* rebecca.li — single-page site. Hand-written, no build step.
+   Note: assets/css/main.css and gallery.css belong to the legacy
+   photography galleries. Do not merge this file into them. */
+
+:root {
+  --bg:        #fdfdfc;
+  --text:      #2f3032;
+  --muted:     #6b6f76;
+  --rule:      #e2e2df;
+  --accent:    #263959;
+  --accent-hi: #3c5a8a;
+  --measure:   43rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #16181c;
+    --text:      #d8d9dc;
+    --muted:     #9aa0a8;
+    --rule:      #2c2f35;
+    --accent:    #9db7e0;
+    --accent-hi: #c3d4ee;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1rem 5rem;
+}
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover, a:focus { color: var(--accent-hi); }
+
+p { margin: 0 0 1em; }
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 3.5rem 0 1.75rem;
+}
+
+.masthead img {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  filter: grayscale(12%);
+}
+
+.masthead h1 {
+  font-size: 2.1rem;
+  line-height: 1.15;
+  margin: 0 0 .3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: .95rem;
+  margin: 0 0 .7rem;
+}
+
+/* ---------- inline link rows ---------- */
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .9rem;
+  font-size: .92rem;
+}
+
+/* Separator hangs off the END of each item so it never starts a wrapped line. */
+.links li:not(:last-child)::after {
+  content: "·";
+  color: var(--muted);
+  margin-left: .9rem;
+}
+
+.resume-link { font-weight: 600; }
+
+/* ---------- nav ---------- */
+
+nav.anchors {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: .6rem 0;
+  margin-bottom: 2.5rem;
+}
+
+nav.anchors ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .3rem 1.25rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+
+nav.anchors a { color: var(--muted); text-decoration: none; }
+nav.anchors a:hover, nav.anchors a:focus { color: var(--accent); text-decoration: underline; }
+
+/* ---------- sections ---------- */
+
+section { margin-bottom: 3rem; scroll-margin-top: 4rem; }
+
+h2 {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+  padding-bottom: .4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+h3 { font-size: 1.06rem; font-weight: 600; margin: 0; line-height: 1.35; }
+
+.lede { font-size: 1.06rem; }
+
+.availability {
+  border-left: 3px solid var(--accent);
+  padding: .1rem 0 .1rem 1rem;
+  margin: 1.5rem 0 0;
+  color: var(--text);
+}
+
+/* ---------- entries (experience, education, projects) ---------- */
+
+.entry { margin-bottom: 1.9rem; }
+.entry:last-child { margin-bottom: 0; }
+
+.entry-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 1.5rem;
+  align-items: baseline;
+}
+
+.entry-meta, .when {
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.when {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.entry p { margin: .5rem 0 0; }
+
+.role { font-style: italic; }
+
+/* ---------- publications ---------- */
+
+.pubs { list-style: none; margin: 0; padding: 0; }
+
+.pubs li {
+  margin-bottom: 1.1rem;
+  padding-left: 1.4rem;
+  text-indent: -1.4rem;
+  font-size: .97rem;
+}
+
+.pubs li:last-child { margin-bottom: 0; }
+.pubs .venue { font-style: italic; }
+.pubs .me { font-weight: 700; }
+
+/* ---------- compact lists ---------- */
+
+.plain { list-style: none; margin: 0; padding: 0; }
+.plain > li { margin-bottom: .75rem; }
+.plain > li:last-child { margin-bottom: 0; }
+
+.skills { margin: 0; }
+.skills dt {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--muted);
+  margin-bottom: .2rem;
+}
+.skills dd { margin: 0 0 1rem; font-size: .97rem; }
+.skills dd:last-child { margin-bottom: 0; }
+
+/* ---------- footer ---------- */
+
+footer.site {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.25rem;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+/* ---------- narrow screens ---------- */
+
+@media (max-width: 34rem) {
+  body { font-size: 17px; }
+
+  .masthead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+    padding-top: 2.5rem;
+  }
+
+  .masthead img { width: 92px; height: 92px; }
+  .masthead h1 { font-size: 1.8rem; }
+
+  .entry-head { grid-template-columns: 1fr; }
+  .when { margin-top: .15rem; }
+
+  nav.anchors ul { gap: .3rem 1rem; font-size: .75rem; }
+}
+
+/* ---------- print ---------- */
+
+@media print {
+  :root { --bg: #fff; --text: #000; --muted: #444; --rule: #bbb; --accent: #000; }
+  body { font-size: 11pt; }
+  nav.anchors, .masthead img { display: none; }
+  .page { max-width: none; padding: 0; }
+  section { page-break-inside: avoid; margin-bottom: 1.5rem; }
+  a { text-decoration: none; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #444; }
+}
