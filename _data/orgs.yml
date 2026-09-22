@@ -14,12 +14,16 @@
 cfs:
   name: Commonwealth Fusion Systems
   url: https://cfs.energy
+  logo: cfs.svg
+  # Kept as a fallback if the file ever goes missing; ignored while `logo` is set.
   mono: CFS
   tint: "#a34e41"  # deepened burnt-peach - 5.2:1
 
 vicarious:
   name: Vicarious Surgical
   url: https://www.vicarioussurgical.com
+  logo: vicarious.svg
+  # Kept as a fallback if the file ever goes missing; ignored while `logo` is set.
   mono: VS
   tint: "#7a5c68"  # lightened midnight-violet - 5.5:1
 

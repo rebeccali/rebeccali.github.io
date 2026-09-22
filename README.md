@@ -100,7 +100,16 @@ cfs:
 Nothing else changes — both the home page and the CV pick it up.
 
 Square-ish source images work best. A wide wordmark lockup shrinks to
-illegibility inside the tile; crop it to the mark first.
+illegibility inside the tile, so crop the `viewBox` (or the bitmap) down to
+the mark and drop the lettering.
+
+Two things to watch with SVGs, since they are loaded through `<img>` and so
+render in isolation from the page:
+
+- `fill="currentColor"` resolves to black, not the surrounding text colour.
+  Replace it with an explicit hex — the brand colour where you know it.
+- Anything styled by an external class (`class="path-vs-black"` and the like)
+  arrives unstyled. Same fix: set `fill` on the path.
 
 ## Updating the CV
 
