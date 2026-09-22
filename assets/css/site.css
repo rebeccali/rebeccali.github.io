@@ -7,25 +7,30 @@
      porcelain       #f4f7f3
      midnight-violet #3e2a35
      deep-teal       #4e6e58
-   Burnt peach only clears 2.96:1 on porcelain, so it is never body or link
-   text in light mode — it carries warmth (rules, marks) there and becomes the
-   link colour in dark mode, where it reads 5.0:1. Every text pair below is
-   at or above WCAG AA. */
+   Burnt peach at full strength clears only 2.96:1 on porcelain, so light-mode
+   links use it darkened to #a34e41 (5.2:1) — same warmth, legible as text.
+   On the dark background the pure colour reads 5.0:1 and is used as given.
+   Every text pair below is at or above WCAG AA. */
 
 :root {
   --bg:        #f4f7f3;  /* porcelain */
   --text:      #3e2a35;  /* midnight-violet — 12.3:1 */
   --muted:     #6c5d64;  /* — 5.7:1 */
   --rule:      #dededc;
-  --accent:    #4e6e58;  /* deep-teal — 5.3:1 */
-  --accent-hi: #405a48;  /* — 7.0:1 */
+  --accent:    #a34e41;  /* burnt-peach deepened — 5.2:1 */
+  --accent-hi: #8c4438;  /* — 6.5:1 */
   --warm:      #e26d5a;  /* burnt-peach — decorative only here */
-  --on-accent: #f4f7f3;  /* text on a filled accent — 5.7:1 on deep-teal */
+  --on-accent: #f4f7f3;  /* text on a filled accent — 5.2:1 on the deepened peach */
   --tile:      #ffffff;  /* logo tile face, light in both themes */
   --measure:   43rem;
+  --gutter:    1.5rem;
+  /* Section rules (h2, the nav band, footer tops) run this far past the text
+     on each side, so a section boundary reads before you reach the words.
+     Narrow screens get a smaller bleed to protect the 16px edge gutter. */
+  --bleed:     0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --bg:        #2b1d25;  /* midnight-violet, deepened */
     --text:      #f4f7f3;  /* — 14.9:1 */
@@ -38,6 +43,7 @@
     --tile:      #f4f7f3;
   }
 }
+*/
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -54,9 +60,15 @@ body {
 }
 
 .page {
-  max-width: var(--measure);
+  max-width: calc(var(--measure) + 2 * var(--gutter));
   margin: 0 auto;
-  padding: 0 1rem 5rem;
+  padding: 0 var(--gutter) 5rem;
+}
+
+/* Once the page is wide enough to sit clear of the viewport edges, the
+   section rules can bleed the full gutter. */
+@media (min-width: 48rem) {
+  :root { --bleed: var(--gutter); }
 }
 
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
@@ -126,8 +138,8 @@ nav.anchors {
   background: var(--bg);
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
-  padding: .6rem 0;
-  margin-bottom: 2.5rem;
+  padding: .6rem var(--bleed);
+  margin: 0 calc(-1 * var(--bleed)) 2.5rem;
 }
 
 nav.anchors ul {
@@ -153,8 +165,8 @@ h2 {
   text-transform: uppercase;
   letter-spacing: .12em;
   color: var(--muted);
-  margin: 0 0 1.25rem;
-  padding-bottom: .4rem;
+  margin: 0 calc(-1 * var(--bleed)) 1.25rem;
+  padding: 0 var(--bleed) .4rem;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -240,7 +252,8 @@ h3 { font-size: 1.06rem; font-weight: 600; margin: 0; line-height: 1.35; }
 
 footer.site {
   border-top: 1px solid var(--rule);
-  padding-top: 1.25rem;
+  margin: 0 calc(-1 * var(--bleed));
+  padding: 1.25rem var(--bleed) 0;
   color: var(--muted);
   font-size: .85rem;
 }
@@ -350,7 +363,11 @@ footer.site {
 
 .page-head h1 { font-size: 2rem; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
 
-#cv-foot { border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+#cv-foot {
+  border-top: 1px solid var(--rule);
+  margin: 0 calc(-1 * var(--bleed));
+  padding: 1.5rem var(--bleed) 0;
+}
 #cv-foot p { margin: 0 0 .6rem; }
 
 /* ---------- narrow screens ---------- */
