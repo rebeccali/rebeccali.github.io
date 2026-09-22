@@ -57,7 +57,7 @@ p { margin: 0 0 1em; }
   padding: 3.5rem 0 1.75rem;
 }
 
-.masthead img {
+.masthead .portrait {
   width: 116px;
   height: 116px;
   border-radius: 50%;
@@ -160,10 +160,16 @@ h3 { font-size: 1.06rem; font-weight: 600; margin: 0; line-height: 1.35; }
 
 .entry-head {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0 1.5rem;
-  align-items: baseline;
+  grid-template-columns: var(--logo-size) 1fr auto;
+  gap: 0 .9rem;
+  align-items: start;
 }
+
+/* Entries with no organisation (aggregate rows) skip the logo column. */
+.entry-plain .entry-head { grid-template-columns: 1fr auto; }
+
+.entry-title { min-width: 0; }
+.entry-title h3 { margin-top: .1rem; }
 
 .entry-meta, .when {
   color: var(--muted);
@@ -177,6 +183,7 @@ h3 { font-size: 1.06rem; font-weight: 600; margin: 0; line-height: 1.35; }
 }
 
 .entry p { margin: .5rem 0 0; }
+.entry-title .entry-meta { margin: .15rem 0 0; }
 
 .role { font-style: italic; }
 
@@ -222,6 +229,118 @@ footer.site {
   font-size: .85rem;
 }
 
+/* ---------- logos ---------- */
+
+:root { --logo-size: 44px; }
+
+.logo {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  overflow: hidden;
+  /* Logos are mostly dark marks, so the tile keeps a light face in both
+     themes rather than letting them vanish against a dark page. */
+  background: #fff;
+  border: 1px solid var(--rule);
+}
+
+.logo img {
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+}
+
+.logo-mono {
+  background: var(--tint, var(--accent));
+  border-color: transparent;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+/* ---------- org list (home page highlights) ---------- */
+
+.orgs { list-style: none; margin: 0; padding: 0; }
+
+.orgs li {
+  display: grid;
+  grid-template-columns: var(--logo-size) 1fr auto;
+  gap: 0 .9rem;
+  align-items: center;
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.orgs li:last-child { border-bottom: 0; }
+
+.org-text { min-width: 0; }
+.org-name { display: block; font-weight: 600; }
+.org-role { display: block; color: var(--muted); font-size: .88rem; }
+
+.more { margin-top: 1.25rem; font-size: .95rem; }
+
+/* ---------- buttons ---------- */
+
+.cta { margin: .9rem 0 0; display: flex; flex-wrap: wrap; gap: .5rem .9rem; align-items: center; }
+
+.pdf-button {
+  display: inline-block;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: #fff;
+  background: var(--accent);
+  padding: .45rem .9rem;
+  border-radius: 6px;
+}
+
+.pdf-button:hover, .pdf-button:focus { background: var(--accent-hi); color: #fff; }
+
+@media (prefers-color-scheme: dark) {
+  .pdf-button { color: #16181c; }
+  .pdf-button:hover, .pdf-button:focus { color: #16181c; }
+}
+
+.text-button {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+/* ---------- CV page head ---------- */
+
+.page-head { padding: 3rem 0 1.5rem; }
+
+.breadcrumb {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .82rem;
+  margin: 0 0 1rem;
+}
+
+.breadcrumb a { text-decoration: none; color: var(--muted); }
+.breadcrumb a:hover, .breadcrumb a:focus { color: var(--accent); text-decoration: underline; }
+
+.page-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.page-head h1 { font-size: 2rem; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+
+#cv-foot { border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+#cv-foot p { margin: 0 0 .6rem; }
+
 /* ---------- narrow screens ---------- */
 
 @media (max-width: 34rem) {
@@ -234,11 +353,21 @@ footer.site {
     padding-top: 2.5rem;
   }
 
-  .masthead img { width: 92px; height: 92px; }
+  .masthead .portrait { width: 92px; height: 92px; }
   .masthead h1 { font-size: 1.8rem; }
 
-  .entry-head { grid-template-columns: 1fr; }
+  :root { --logo-size: 38px; }
+
+  .entry-head { grid-template-columns: var(--logo-size) 1fr; }
+  .entry-plain .entry-head { grid-template-columns: 1fr; }
+  .entry-head .when { grid-column: 2; }
+  .entry-plain .entry-head .when { grid-column: 1; }
   .when { margin-top: .15rem; }
+
+  .orgs li { grid-template-columns: var(--logo-size) 1fr; }
+  .orgs .when { grid-column: 2; }
+
+  .page-head h1 { font-size: 1.7rem; }
 
   nav.anchors ul { gap: .3rem 1rem; font-size: .75rem; }
 }
@@ -248,7 +377,7 @@ footer.site {
 @media print {
   :root { --bg: #fff; --text: #000; --muted: #444; --rule: #bbb; --accent: #000; }
   body { font-size: 11pt; }
-  nav.anchors, .masthead img { display: none; }
+  nav.anchors, .masthead .portrait { display: none; }
   .page { max-width: none; padding: 0; }
   section { page-break-inside: avoid; margin-bottom: 1.5rem; }
   a { text-decoration: none; }

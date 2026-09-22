@@ -1,0 +1,8 @@
+{%- assign org = site.data.orgs[include.org] -%}
+{%- if org.logo -%}
+<span class="logo" role="img" aria-label="{{ org.name }} logo">
+  <img src="{{ '/assets/img/logos/' | append: org.logo | relative_url }}" alt="" loading="lazy" width="128" height="128">
+</span>
+{%- else -%}
+<span class="logo logo-mono" role="img" aria-label="{{ org.name }}"{% if org.tint %} style="--tint: {{ org.tint }}"{% endif %}>{{ org.mono }}</span>
+{%- endif -%}

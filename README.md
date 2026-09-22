@@ -6,11 +6,16 @@ domain `rebecca.li` (see `CNAME`).
 ## Structure
 
 ```
-index.html            The entire site. Content lives here, inline.
+index.html            Home: bio, where I've worked, contact.
+cv.html               Full CV at /cv/ — experience, education, publications,
+                      projects, skills.
+_data/orgs.yml        Logo registry: one entry per company or org.
+_includes/logo.html   Renders an org's logo, or a lettermark if it has no file.
+assets/img/logos/     Square logo files, 128x128.
 _layouts/default.html Bare HTML shell.
 _includes/head.html   Meta tags, OG/Twitter cards, stylesheet link.
 assets/css/site.css   The stylesheet. Hand-written, no build step.
-assets/resume-*.pdf   Resume, copied in from the resume repo (see below).
+assets/cv-*.pdf       CV, copied in from the resume repo (see below).
 _archive/             Retired blog posts. Not built, not published.
 photography/          Pre-generated gallery HTML from the old site. Still live at
                       /photography/<gallery>/, deliberately unlinked from the site.
@@ -76,18 +81,38 @@ Ruby 3.3 is the newest version that works. If GitHub Pages ever drops
 Check which you're actually using with `ruby -v && bundle -v` — both should come
 from `ruby@3.3`, and `bundle -v` should report 4.x.
 
-## Updating the resume
+## Adding a logo
 
-The resume is authored in LaTeX in a separate repo
-(`rmli_resume_letters/resume/`). After rebuilding the PDF there, copy it in and
-point `resume:` in `_config.yml` at the new filename:
+Logos live in `assets/img/logos/` and are wired up in `_data/orgs.yml`. An org
+with no `logo:` line falls back to a coloured lettermark, so the page is never
+broken by a missing file.
 
-```sh
-cp ../rmli_resume_letters/resume/<new>.pdf assets/resume-rebecca-li-<yyyy-mm>.pdf
+To add one: drop a square PNG or SVG (128x128, transparent background) into
+`assets/img/logos/`, then add the filename to that org in `_data/orgs.yml`:
+
+```yaml
+cfs:
+  name: Commonwealth Fusion Systems
+  url: https://cfs.energy
+  logo: cfs.png     # add this line; `mono` and `tint` are then ignored
 ```
 
-The on-page Experience section is a fleshed-out superset of the PDF and is
-maintained by hand in `index.html`.
+Nothing else changes — both the home page and the CV pick it up.
+
+Square-ish source images work best. A wide wordmark lockup shrinks to
+illegibility inside the tile; crop it to the mark first.
+
+## Updating the CV
+
+The CV is authored in LaTeX in a separate repo (`rmli_resume_letters/resume/`).
+After rebuilding the PDF there, copy it in and point `cv:` in `_config.yml` at
+the new filename:
+
+```sh
+cp ../rmli_resume_letters/resume/<new>.pdf assets/cv-rebecca-li-<yyyy-mm>.pdf
+```
+
+`cv.html` is a fleshed-out superset of the PDF and is maintained by hand.
 
 ## Deploying
 

@@ -1,0 +1,65 @@
+# Logo registry. Each entry renders through _includes/logo.html.
+#
+#   logo:  filename in assets/img/logos/ — drawn as an image
+#   mono:  1–3 letters, used when there is no logo file
+#   tint:  optional background for the monogram tile
+#
+# To add a real logo later: drop a square PNG/SVG into assets/img/logos/
+# and add a `logo:` line here. Nothing else needs to change.
+
+cfs:
+  name: Commonwealth Fusion Systems
+  url: https://cfs.energy
+  mono: CFS
+  tint: "#d9643a"
+
+vicarious:
+  name: Vicarious Surgical
+  url: https://www.vicarioussurgical.com
+  mono: VS
+  tint: "#2f6f8f"
+
+deepmind:
+  name: DeepMind
+  url: https://deepmind.google
+  logo: deepmind.png
+
+grasp:
+  name: University of Pennsylvania, GRASP Lab
+  url: https://www.grasp.upenn.edu
+  logo: upenn.png
+
+kittyhawk:
+  name: Kitty Hawk
+  url: https://kittyhawk.aero
+  logo: kittyhawk.png
+
+medialab:
+  name: MIT Media Lab
+  url: https://media.mit.edu
+  logo: mit-media-lab.png
+
+upenn:
+  name: University of Pennsylvania
+  url: https://www.upenn.edu
+  logo: upenn.png
+
+mit:
+  name: MIT
+  url: https://www.mit.edu
+  logo: mit.png
+
+mardesigns:
+  name: MAR Designs
+  mono: MAR
+  tint: "#4a7c59"
+
+combatrobotics:
+  name: MIT Combat Robotics
+  mono: TD
+  tint: "#8a3b3b"
+
+workonclimate:
+  name: Work On Climate
+  url: https://workonclimate.org
+  logo: work-on-climate.png
