@@ -2,24 +2,40 @@
    Note: assets/css/main.css and gallery.css belong to the legacy
    photography galleries. Do not merge this file into them. */
 
+/* Palette
+     burnt-peach     #e26d5a
+     porcelain       #f4f7f3
+     midnight-violet #3e2a35
+     deep-teal       #4e6e58
+   Burnt peach only clears 2.96:1 on porcelain, so it is never body or link
+   text in light mode — it carries warmth (rules, marks) there and becomes the
+   link colour in dark mode, where it reads 5.0:1. Every text pair below is
+   at or above WCAG AA. */
+
 :root {
-  --bg:        #fdfdfc;
-  --text:      #2f3032;
-  --muted:     #6b6f76;
-  --rule:      #e2e2df;
-  --accent:    #263959;
-  --accent-hi: #3c5a8a;
+  --bg:        #f4f7f3;  /* porcelain */
+  --text:      #3e2a35;  /* midnight-violet — 12.3:1 */
+  --muted:     #6c5d64;  /* — 5.7:1 */
+  --rule:      #dededc;
+  --accent:    #4e6e58;  /* deep-teal — 5.3:1 */
+  --accent-hi: #405a48;  /* — 7.0:1 */
+  --warm:      #e26d5a;  /* burnt-peach — decorative only here */
+  --on-accent: #f4f7f3;  /* text on a filled accent — 5.7:1 on deep-teal */
+  --tile:      #ffffff;  /* logo tile face, light in both themes */
   --measure:   43rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:        #16181c;
-    --text:      #d8d9dc;
-    --muted:     #9aa0a8;
-    --rule:      #2c2f35;
-    --accent:    #9db7e0;
-    --accent-hi: #c3d4ee;
+    --bg:        #2b1d25;  /* midnight-violet, deepened */
+    --text:      #f4f7f3;  /* — 14.9:1 */
+    --muted:     #a8a4a5;  /* — 6.5:1 */
+    --rule:      #574d52;
+    --accent:    #e26d5a;  /* burnt-peach — 5.0:1 */
+    --accent-hi: #e58676;  /* — 6.1:1 */
+    --warm:      #e26d5a;
+    --on-accent: #2b1d25;  /* — 5.0:1 on burnt-peach */
+    --tile:      #f4f7f3;
   }
 }
 
@@ -147,7 +163,7 @@ h3 { font-size: 1.06rem; font-weight: 600; margin: 0; line-height: 1.35; }
 .lede { font-size: 1.06rem; }
 
 .availability {
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--warm);
   padding: .1rem 0 .1rem 1rem;
   margin: 1.5rem 0 0;
   color: var(--text);
@@ -244,7 +260,7 @@ footer.site {
   overflow: hidden;
   /* Logos are mostly dark marks, so the tile keeps a light face in both
      themes rather than letting them vanish against a dark page. */
-  background: #fff;
+  background: var(--tile);
   border: 1px solid var(--rule);
 }
 
@@ -256,8 +272,9 @@ footer.site {
 
 .logo-mono {
   background: var(--tint, var(--accent));
-  border-color: transparent;
-  color: #fff;
+  /* Keeps .logo's 1px rule border rather than clearing it, so a mono tile
+     always has a visible edge even if its tint sits close to the page. */
+  color: #f4f7f3;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: .72rem;
   font-weight: 700;
@@ -296,18 +313,13 @@ footer.site {
   font-weight: 600;
   letter-spacing: .02em;
   text-decoration: none;
-  color: #fff;
+  color: var(--on-accent);
   background: var(--accent);
   padding: .45rem .9rem;
   border-radius: 6px;
 }
 
-.pdf-button:hover, .pdf-button:focus { background: var(--accent-hi); color: #fff; }
-
-@media (prefers-color-scheme: dark) {
-  .pdf-button { color: #16181c; }
-  .pdf-button:hover, .pdf-button:focus { color: #16181c; }
-}
+.pdf-button:hover, .pdf-button:focus { background: var(--accent-hi); color: var(--on-accent); }
 
 .text-button {
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -375,7 +387,9 @@ footer.site {
 /* ---------- print ---------- */
 
 @media print {
-  :root { --bg: #fff; --text: #000; --muted: #444; --rule: #bbb; --accent: #000; }
+  :root { --bg: #fff; --text: #000; --muted: #444; --rule: #bbb;
+           --accent: #000; --accent-hi: #000; --warm: #666;
+           --on-accent: #fff; --tile: #fff; }
   body { font-size: 11pt; }
   nav.anchors, .masthead .portrait { display: none; }
   .page { max-width: none; padding: 0; }
