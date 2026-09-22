@@ -1,0 +1,65 @@
+# Content of the home page (index.html). Prose may contain inline HTML —
+# it is written into the page as-is, not escaped.
+
+masthead:
+  # Keys from links: in _data/profile.yml.
+  links: [email, github, linkedin]
+  cta:
+    pdf: CV (PDF)
+    full: Full CV →
+
+about:
+  lede: >-
+    I'm a roboticist and controls engineer. I spent the last four years at
+    Commonwealth Fusion Systems leading the bolometry diagnostic for SPARC — designing sensors
+    and cameras that have to survive strong magnetic fields, neutron radiation, and heat, and
+    writing the tomography that turns their signals back into a picture of the plasma.
+  paragraphs:
+    - >-
+      Before fusion I worked on robot learning and control: a research internship at DeepMind
+      on making reinforcement learning policies gentler on real hardware, a simulation lead role at
+      <a href="https://www.vicarioussurgical.com/">Vicarious Surgical</a>, and a masters at Penn's
+      <a href="https://www.grasp.upenn.edu/">GRASP Lab</a> with
+      <a href="https://www.kumarrobotics.org/">Vijay Kumar</a> and
+      <a href="http://www.modlabupenn.org/">Mark Yim</a> on perception-based quadrotor control and
+      graph neural networks for swarms. Before that I did flight controls for an electric VTOL
+      aircraft at Kitty Hawk. I studied mechanical engineering at MIT, where I ran the student
+      makerspace and founded the combat robotics club.
+    - >-
+      The thread running through all of it is hardware that has to work in the physical world,
+      and the software that makes it work. I care most about climate — which is how I ended up in
+      fusion, and roughly where I'd like to stay.
+  # Drop this key (or blank it) when the job search is over and the callout disappears.
+  availability: >-
+    <strong>I'm currently looking for my next role.</strong>
+    If that overlaps with what you're working on, <a href="#contact">get in touch</a>.
+
+highlights:
+  heading: Where I've worked
+  # `org` keys into _data/orgs.yml, which supplies the name, logo and link.
+  items:
+    - org: cfs
+      role: Senior Diagnostician — bolometry for SPARC
+      when: 2022 – 2026
+    - org: vicarious
+      role: Robotics Software Engineer — surgical simulation
+      when: 2021 – 2022
+    - org: deepmind
+      role: Research Scientist Intern — RL on real robots
+      when: 2021
+    - org: grasp
+      name: Penn GRASP Lab          # shorter than the registry name, which the CV uses
+      role: Graduate Researcher — UAV control, swarm learning
+      when: 2018 – 2021
+    - org: kittyhawk
+      role: Controls Engineer — electric VTOL aircraft
+      when: 2016 – 2018
+    - org: medialab
+      role: Undergraduate Researcher — tactile VR actuators
+      when: 2014 – 2017
+  more: Full CV, publications and projects →
+
+contact:
+  heading: Contact
+  intro: The best way to reach me is email.
+  links: [email, github, linkedin, cv]

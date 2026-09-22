@@ -39,7 +39,8 @@ grasp:
 
 kittyhawk:
   name: Kitty Hawk
-  url: https://kittyhawk.aero
+  # No url - the company is gone and kittyhawk.aero no longer resolves. An org
+  # without a url renders as plain text rather than a link.
   logo: kittyhawk.png
 
 medialab:

@@ -1,0 +1,22 @@
+{%- comment -%}
+  One CV entry: logo, title, role/location, date, prose. Every field but
+  `title` is optional — see the header of _data/cv.yml.
+
+  {% include entry.html entry=entry %}
+{%- endcomment -%}
+{%- assign entry = include.entry -%}
+<div class="entry{% unless entry.org %} entry-plain{% endunless %}">
+  <div class="entry-head">
+    {% if entry.org %}{% include logo.html org=entry.org %}{% endif %}
+    <div class="entry-title">
+      <h3>{{ entry.title }}</h3>
+      {%- if entry.role or entry.meta %}
+      <p class="entry-meta">{% if entry.role %}<span class="role">{{ entry.role }}</span>{% if entry.meta %} · {% endif %}{% endif %}{{ entry.meta }}</p>
+      {%- endif %}
+    </div>
+    {% if entry.when %}<span class="when">{{ entry.when }}</span>{% endif %}
+  </div>
+  {%- if entry.body %}
+  <p>{{ entry.body }}</p>
+  {%- endif %}
+</div>

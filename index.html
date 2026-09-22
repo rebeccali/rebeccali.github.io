@@ -1,23 +1,21 @@
 ---
 layout: default
-title: Rebecca Li
+data: home
 ---
+{%- assign profile = site.data.profile -%}
+{%- assign home = site.data.home -%}
 
 <div class="page">
 
 <header class="masthead">
-  <img class="portrait" src="{{ '/assets/img/' | append: site.author-img | relative_url }}" alt="Rebecca Li">
+  <img class="portrait" src="{{ profile.portrait | relative_url }}" alt="{{ profile.portrait_alt }}">
   <div>
-    <h1>Rebecca Li</h1>
-    <p class="tagline">{{ site.tagline }}</p>
-    <ul class="links">
-      <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-      <li><a href="https://github.com/{{ site.github }}">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/{{ site.linkedin }}/">LinkedIn</a></li>
-    </ul>
+    <h1>{{ profile.name }}</h1>
+    <p class="tagline">{{ profile.tagline }}</p>
+    {% include links.html keys=home.masthead.links %}
     <p class="cta">
-      <a class="pdf-button" href="{{ site.cv | relative_url }}">CV (PDF)</a>
-      <a class="text-button" href="{{ '/cv/' | relative_url }}">Full CV &rarr;</a>
+      <a class="pdf-button" href="{{ profile.links.cv.url | relative_url }}">{{ home.masthead.cta.pdf }}</a>
+      <a class="text-button" href="{{ '/cv/' | relative_url }}">{{ home.masthead.cta.full }}</a>
     </p>
   </div>
 </header>
@@ -25,101 +23,46 @@ title: Rebecca Li
 <main>
 
 <section id="about">
-  <p class="lede">I'm a roboticist and controls engineer. I spent the last four years at
-  Commonwealth Fusion Systems leading the bolometry diagnostic for SPARC — designing sensors
-  and cameras that have to survive strong magnetic fields, neutron radiation, and heat, and
-  writing the tomography that turns their signals back into a picture of the plasma.</p>
+  <p class="lede">{{ home.about.lede }}</p>
 
-  <p>Before fusion I worked on robot learning and control: a research internship at DeepMind
-  on making reinforcement learning policies gentler on real hardware, a simulation lead role at
-  <a href="https://www.vicarioussurgical.com/">Vicarious Surgical</a>, and a masters at Penn's
-  <a href="https://www.grasp.upenn.edu/">GRASP Lab</a> with
-  <a href="https://www.kumarrobotics.org/">Vijay Kumar</a> and
-  <a href="http://www.modlabupenn.org/">Mark Yim</a> on perception-based quadrotor control and
-  graph neural networks for swarms. Before that I did flight controls for an electric VTOL
-  aircraft at Kitty Hawk. I studied mechanical engineering at MIT, where I ran the student
-  makerspace and founded the combat robotics club.</p>
+  {% for paragraph in home.about.paragraphs %}
+  <p>{{ paragraph }}</p>
+  {% endfor %}
 
-  <p>The thread running through all of it is hardware that has to work in the physical world,
-  and the software that makes it work. I care most about climate — which is how I ended up in
-  fusion, and roughly where I'd like to stay.</p>
-
-  <p class="availability"><strong>I'm currently looking for my next role.</strong>
-  If that overlaps with what you're working on, <a href="#contact">get in touch</a>.</p>
+  {%- if home.about.availability %}
+  <p class="availability">{{ home.about.availability }}</p>
+  {%- endif %}
 </section>
 
 <section id="highlights">
-  <h2>Where I've worked</h2>
+  <h2>{{ home.highlights.heading }}</h2>
 
   <ul class="orgs">
+    {%- for item in home.highlights.items %}
+    {%- assign org = site.data.orgs[item.org] %}
     <li>
-      {% include logo.html org="cfs" %}
+      {% include logo.html org=item.org %}
       <div class="org-text">
-        <span class="org-name"><a href="https://cfs.energy">Commonwealth Fusion Systems</a></span>
-        <span class="org-role">Senior Diagnostician — bolometry for SPARC</span>
+        {%- assign org_name = item.name | default: org.name %}
+        <span class="org-name">{% if org.url %}<a href="{{ org.url }}">{{ org_name }}</a>{% else %}{{ org_name }}{% endif %}</span>
+        <span class="org-role">{{ item.role }}</span>
       </div>
-      <span class="when">2022 &ndash; 2026</span>
+      <span class="when">{{ item.when }}</span>
     </li>
-    <li>
-      {% include logo.html org="vicarious" %}
-      <div class="org-text">
-        <span class="org-name"><a href="https://www.vicarioussurgical.com">Vicarious Surgical</a></span>
-        <span class="org-role">Robotics Software Engineer — surgical simulation</span>
-      </div>
-      <span class="when">2021 &ndash; 2022</span>
-    </li>
-    <li>
-      {% include logo.html org="deepmind" %}
-      <div class="org-text">
-        <span class="org-name"><a href="https://deepmind.google">DeepMind</a></span>
-        <span class="org-role">Research Scientist Intern — RL on real robots</span>
-      </div>
-      <span class="when">2021</span>
-    </li>
-    <li>
-      {% include logo.html org="grasp" %}
-      <div class="org-text">
-        <span class="org-name"><a href="https://www.grasp.upenn.edu">Penn GRASP Lab</a></span>
-        <span class="org-role">Graduate Researcher — UAV control, swarm learning</span>
-      </div>
-      <span class="when">2018 &ndash; 2021</span>
-    </li>
-    <li>
-      {% include logo.html org="kittyhawk" %}
-      <div class="org-text">
-        <span class="org-name">Kitty Hawk</span>
-        <span class="org-role">Controls Engineer — electric VTOL aircraft</span>
-      </div>
-      <span class="when">2016 &ndash; 2018</span>
-    </li>
-    <li>
-      {% include logo.html org="medialab" %}
-      <div class="org-text">
-        <span class="org-name"><a href="https://media.mit.edu">MIT Media Lab</a></span>
-        <span class="org-role">Undergraduate Researcher — tactile VR actuators</span>
-      </div>
-      <span class="when">2014 &ndash; 2017</span>
-    </li>
+    {%- endfor %}
   </ul>
 
-  <p class="more"><a href="{{ '/cv/' | relative_url }}">Full CV, publications and projects &rarr;</a></p>
+  <p class="more"><a href="{{ '/cv/' | relative_url }}">{{ home.highlights.more }}</a></p>
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
-  <p>The best way to reach me is email.</p>
-  <ul class="links">
-    <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-    <li><a href="https://github.com/{{ site.github }}">github.com/{{ site.github }}</a></li>
-    <li><a href="https://www.linkedin.com/in/{{ site.linkedin }}/">LinkedIn</a></li>
-    <li><a href="{{ site.cv | relative_url }}">CV (PDF)</a></li>
-  </ul>
+  <h2>{{ home.contact.heading }}</h2>
+  <p>{{ home.contact.intro }}</p>
+  {% include links.html keys=home.contact.links long=true %}
 </section>
 
 </main>
 
-<footer class="site">
-  <p>{{ site.time | date: '%Y' }} &copy; {{ site.author }}</p>
-</footer>
+{% include footer.html %}
 
 </div>

@@ -1,0 +1,19 @@
+{%- comment -%}
+  Renders a publication's author list, ending in a full stop. Names matching
+  profile.name are marked up with .me; the last two names are joined with
+  "and" unless the list ends in "et al.", which also supplies its own stop.
+
+  {% include authors.html authors=pub.authors %}
+{%- endcomment -%}
+{%- assign authors = include.authors -%}
+{%- assign last = authors | last -%}
+{%- assign count = authors | size -%}
+{%- capture rendered -%}
+  {%- for author in authors -%}
+    {%- if forloop.first == false -%}
+      {%- if forloop.last and count > 1 and last != 'et al.' %} and {% else %}, {% endif -%}
+    {%- endif -%}
+    {%- if author == site.data.profile.name -%}<span class="me">{{ author }}</span>{%- else -%}{{ author }}{%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{{- rendered }}{% assign tail = rendered | slice: -1 %}{% unless tail == '.' %}.{% endunless -%}

@@ -5,15 +5,30 @@ domain `rebecca.li` (see `CNAME`).
 
 ## Structure
 
+Text and layout are kept apart: everything you would want to *edit* — prose,
+job titles, dates, publications, links — lives in `_data/*.yml`, and the `.html`
+files are loops over it.
+
 ```
-index.html            Home: bio, where I've worked, contact.
-cv.html               Full CV at /cv/ — experience, education, publications,
-                      projects, skills.
-_data/orgs.yml        Logo registry: one entry per company or org.
-_includes/logo.html   Renders an org's logo, or a lettermark if it has no file.
-assets/img/logos/     Square logo files, 128x128.
+_data/profile.yml     Name, tagline, meta description, portrait, every link,
+                      and the CV PDF path.
+_data/home.yml        Home page: bio paragraphs, the "where I've worked" list,
+                      the contact block.
+_data/cv.yml          CV page: every section, entry, publication and skill.
+_data/orgs.yml        Logo registry: one entry per company or org, shared by
+                      the home page and the CV.
+
+index.html            Home page template. Loops over _data/home.yml.
+cv.html               CV template at /cv/. Loops over _data/cv.yml.
 _layouts/default.html Bare HTML shell.
 _includes/head.html   Meta tags, OG/Twitter cards, stylesheet link.
+_includes/entry.html  One CV entry: logo, title, role, dates, prose.
+_includes/authors.html  An author list, with my name bolded.
+_includes/links.html  A <ul> of links, chosen by key from profile.yml.
+_includes/logo.html   An org's logo, or a lettermark if it has no file.
+_includes/footer.html The copyright line.
+
+assets/img/logos/     Square logo files, 128x128.
 assets/css/site.css   The stylesheet. Hand-written, no build step.
 assets/cv-*.pdf       CV, copied in from the resume repo (see below).
 _archive/             Retired blog posts. Not built, not published.
@@ -24,6 +39,34 @@ assets/css/main.css   Legacy stylesheets. The photography galleries load these.
 assets/css/gallery.css  Do not delete.
 assets/fonts/font-awesome/  Ditto — the galleries reference it.
 ```
+
+`_config.yml` holds build settings only. One practical consequence: edits to
+`_data/` show up on the next page load under `jekyll serve`, while edits to
+`_config.yml` need the server restarted.
+
+## Editing the content
+
+Each data file starts with a comment explaining its own shape; the short version:
+
+- **Change a job title, date or paragraph** — find it in `_data/home.yml` (home
+  page) or `_data/cv.yml` (CV) and edit the string. Prose fields accept inline
+  HTML, so a `<a href="...">link</a>` in the middle of a sentence is fine.
+- **Add a CV entry** — add an item to that section's `entries:` list. Only
+  `title` is required. Leave out `org` and it renders without a logo (the style
+  the "Student leadership" entry uses); leave out `body` and it is just a
+  heading line.
+- **Add a CV section** — add to `sections:` in `_data/cv.yml` with an `id`,
+  `heading` and a `type` of `entries`, `publications` or `skills`. The anchor
+  nav at the top of the page is generated from that list, so it picks the new
+  section up automatically. Add `nav:` to give the nav a shorter label than the
+  heading.
+- **Add a publication** — `authors` is a plain list of names. Mine is bolded
+  wherever it appears, and the last two names are joined with "and" unless the
+  list ends in `et al.`
+- **Change an email address or profile link** — `links:` in
+  `_data/profile.yml`, once, for every page that uses it.
+- **Take down the "currently looking" callout** — delete the `availability:`
+  key in `_data/home.yml` and the paragraph disappears.
 
 ## Local development
 
@@ -114,8 +157,8 @@ render in isolation from the page:
 ## Updating the CV
 
 The CV is authored in LaTeX in a separate repo (`rmli_resume_letters/resume/`).
-After rebuilding the PDF there, copy it in and point `cv:` in `_config.yml` at
-the new filename:
+After rebuilding the PDF there, copy it in and point `links.cv.url` in
+`_data/profile.yml` at the new filename:
 
 ```sh
 cp ../rmli_resume_letters/resume/<new>.pdf assets/cv-rebecca-li-<yyyy-mm>.pdf

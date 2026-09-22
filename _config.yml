@@ -1,6 +1,13 @@
 ---
-title: Rebecca Li
-description: 'Roboticist and controls engineer working on fusion, robotics, and climate.'
+# Build settings only. The site's content lives in _data/:
+#
+#   _data/profile.yml  name, tagline, meta description, portrait, links, CV
+#   _data/home.yml     the home page
+#   _data/cv.yml       the CV page
+#   _data/orgs.yml     logo registry, shared by both pages
+#
+# Anything edited here needs a `jekyll serve` restart; _data files do not.
+
 url: https://rebecca.li
 baseurl: ''
 timezone: UTC

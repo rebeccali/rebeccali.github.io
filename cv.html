@@ -1,276 +1,70 @@
 ---
 layout: default
-title: CV
 permalink: /cv/
-description: Curriculum vitae of Rebecca Li — roboticist and controls engineer.
+data: cv
 ---
+{%- assign profile = site.data.profile -%}
+{%- assign cv = site.data.cv -%}
 
 <div class="page">
 
 <header class="page-head">
-  <p class="breadcrumb"><a href="{{ '/' | relative_url }}">&larr; Rebecca Li</a></p>
+  <p class="breadcrumb"><a href="{{ '/' | relative_url }}">{{ cv.breadcrumb }}</a></p>
   <div class="page-head-row">
-    <h1>Curriculum Vitae</h1>
-    <a class="pdf-button" href="{{ site.cv | relative_url }}">Download CV (PDF)</a>
+    <h1>{{ cv.heading }}</h1>
+    <a class="pdf-button" href="{{ profile.links.cv.url | relative_url }}">{{ cv.download }}</a>
   </div>
 </header>
 
 <nav class="anchors" aria-label="Sections">
   <ul>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
+    {%- for section in cv.sections %}
+    <li><a href="#{{ section.id }}">{{ section.nav | default: section.heading }}</a></li>
+    {%- endfor %}
   </ul>
 </nav>
 
 <main>
 
-<section id="experience">
-  <h2>Experience</h2>
+{% for section in cv.sections %}
+<section id="{{ section.id }}">
+  <h2>{{ section.heading }}</h2>
 
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="cfs" %}
-      <div class="entry-title">
-        <h3>Commonwealth Fusion Systems</h3>
-        <p class="entry-meta"><span class="role">Senior Diagnostician &middot; Diagnostician &middot;
-          Diagnostics Support Engineer</span> &middot; Devens &amp; Somerville, MA</p>
-      </div>
-      <span class="when">2022 &ndash; 2026</span>
-    </div>
-    <p>Led the bolometry diagnostic for SPARC end to end: physics requirements, sensor and camera
-    design, electrical and mechanical integration, testing, and project management. Bolometers
-    measure the power radiated out of the plasma, which means putting delicate sensors close to a
-    tokamak — rapidly changing magnetic fields, neutron flux, and temperatures that rule out most
-    of the obvious engineering answers. I coordinated the design across tokamak systems, CAD,
-    supply chain, and program management, and developed the tomographic reconstruction that
-    inverts the measurements into a picture of where the plasma is radiating. First author on the
-    diagnostic's <em>Review of Scientific Instruments</em> paper. I started in 2022 as a
-    Diagnostics Support Engineer, designing active optics and mechatronic interfaces for SPARC
-    diagnostics.</p>
-  </div>
+  {%- case section.type -%}
 
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="vicarious" %}
-      <div class="entry-title">
-        <h3>Vicarious Surgical</h3>
-        <p class="entry-meta"><span class="role">Robotics Software Engineer</span> &middot; Waltham, MA</p>
-      </div>
-      <span class="when">2021 &ndash; 2022</span>
-    </div>
-    <p>Technical lead for a physics-based, photorealistic simulation of robotic surgery in ROS 2
-    and Gazebo, used to generate synthetic training data for machine learning where real surgical
-    data is scarce and expensive. Alongside the simulation work I set up the team's CI and coding
-    practices and reviewed code for more junior engineers.</p>
-  </div>
+  {%- when 'entries' -%}
+    {% for entry in section.entries %}
+    {% include entry.html entry=entry %}
+    {%- endfor %}
 
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="deepmind" %}
-      <div class="entry-title">
-        <h3>DeepMind</h3>
-        <p class="entry-meta"><span class="role">Research Scientist Intern</span> &middot; London, UK (remote)</p>
-      </div>
-      <span class="when">2021</span>
-    </div>
-    <p>Research on deep reinforcement learning policies for real robots, aimed at the gap between
-    what works in simulation and what a physical machine can survive: reducing actuator
-    wear-and-tear and making interaction safer, on open-source GCP infrastructure.</p>
-  </div>
-
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="grasp" %}
-      <div class="entry-title">
-        <h3>University of Pennsylvania, GRASP Lab</h3>
-        <p class="entry-meta"><span class="role">Graduate Researcher</span> &middot; Philadelphia, PA</p>
-      </div>
-      <span class="when">2018 &ndash; 2021</span>
-    </div>
-    <p>Three strands of work with Vijay Kumar and Mark Yim. I designed and verified a
-    robust, perception-based controller for a UAV — one with guarantees that hold when the state
-    estimate is coming from onboard vision rather than motion capture (IROS 2020). I built a
-    dynamics simulation with an aerodynamic model for a one-centimetre, single-actuator UAV, as a
-    design tool for a vehicle too small to instrument conventionally. And I designed and
-    implemented the machine learning pipeline applying graph neural networks to decentralized
-    swarm control, where each robot must act on only what its neighbours can tell it (ICRA 2022).</p>
-  </div>
-
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="kittyhawk" %}
-      <div class="entry-title">
-        <h3>Kitty Hawk</h3>
-        <p class="entry-meta"><span class="role">Controls Engineer &middot; Mechanical Engineering Intern</span>
-          &middot; Palo Alto, CA</p>
-      </div>
-      <span class="when">2016 &ndash; 2018</span>
-    </div>
-    <p>Designed and flight-tested autonomous take-off, landing, and navigation for an electric VTOL
-    aircraft — LQR control, Kalman filtering, and online optimization for allocating thrust across
-    actuators — and built the infrastructure for Monte Carlo simulation and flight data analysis
-    that the team used to decide whether a change was safe to fly. As an intern the summer before,
-    I prototyped a ballistic recovery system from ultra-light parachutes and off-the-shelf rockets,
-    now <a href="https://patents.google.com/patent/US10507929B2/en">US Patent 10,507,929</a>.</p>
-  </div>
-
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="medialab" %}
-      <div class="entry-title">
-        <h3>MIT Media Lab, Tangible Media Group</h3>
-        <p class="entry-meta"><span class="role">Undergraduate Researcher</span> &middot; Cambridge, MA</p>
-      </div>
-      <span class="when">2014 &ndash; 2017</span>
-    </div>
-    <p>Designed and fabricated the electromechanics for a 2D array of linear actuators used for
-    tactile simulation in VR — a surface that can push back, at a density where the mechanical
-    design problem is mostly about what you can fit in the pitch.</p>
-  </div>
-</section>
-
-<section id="education">
-  <h2>Education</h2>
-
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="upenn" %}
-      <div class="entry-title">
-        <h3>M.S. in Robotics &mdash; University of Pennsylvania</h3>
-        <p class="entry-meta">GRASP Lab &middot; Advisors: Vijay Kumar and Mark Yim &middot; Philadelphia, PA</p>
-      </div>
-      <span class="when">2018 &ndash; 2020</span>
-    </div>
-  </div>
-
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="mit" %}
-      <div class="entry-title">
-        <h3>B.S. in Mechanical Engineering &mdash; MIT</h3>
-        <p class="entry-meta">Cambridge, MA</p>
-      </div>
-      <span class="when">2013 &ndash; 2017</span>
-    </div>
-  </div>
-</section>
-
-<section id="publications">
-  <h2>Selected Publications &amp; Patents</h2>
-
+  {%- when 'publications' %}
   <ol class="pubs">
-    <li><span class="me">Rebecca Li</span>, et al.
-      &ldquo;<a href="https://doi.org/10.1063/5.0219548">Development of a bolometry diagnostic for
-      SPARC</a>.&rdquo; <span class="venue">Review of Scientific Instruments</span>, 2024.</li>
-
-    <li>Walker Gosrich, Siddharth Mayya, <span class="me">Rebecca Li</span>, et al.
-      &ldquo;<a href="https://arxiv.org/abs/2109.15278">Coverage Control in Multi-Robot Systems via
-      Graph Neural Networks</a>.&rdquo; <span class="venue">IEEE International Conference on Robotics
-      and Automation (ICRA)</span>, 2022.</li>
-
-    <li><span class="me">Rebecca Li</span>, et al.
-      &ldquo;<a href="https://arxiv.org/abs/2007.04220">Robust, Perception Based Control with
-      Quadrotors</a>.&rdquo; <span class="venue">IEEE/RSJ International Conference on Intelligent
-      Robots and Systems (IROS)</span>, 2020.</li>
-
-    <li>Dinesh Thakur, Yuezhan Tao, <span class="me">Rebecca Li</span>, Alex Zhou, Vijay Kumar and
-      Aleksandr Kushleyev.
-      &ldquo;<a href="https://www.semanticscholar.org/paper/Swarm-of-Inexpensive-Heterogeneous-Micro-Aerial-Thakur-Tao/a5f82de78ca2e0ae5518d6afac6258ddccfdb1d2">Swarm
-      of Inexpensive Heterogeneous Micro Aerial Vehicles</a>.&rdquo;
-      <span class="venue">International Symposium on Experimental Robotics (ISER)</span>, 2020.</li>
-
-    <li>Damon Vander Lind and <span class="me">Rebecca Li</span>.
-      &ldquo;<a href="https://patents.google.com/patent/US10507929B2/en">Attached rocket parachute
-      deployment system</a>.&rdquo; <span class="venue">U.S. Patent 10,507,929</span>, 2019.</li>
+    {%- for pub in section.entries %}
+    <li>{% include authors.html authors=pub.authors %}
+      &ldquo;<a href="{{ pub.url }}">{{ pub.title }}</a>.&rdquo;
+      <span class="venue">{{ pub.venue }}</span>, {{ pub.year }}.</li>
+    {%- endfor %}
   </ol>
-</section>
 
-<section id="projects">
-  <h2>Projects &amp; Leadership</h2>
-
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="mardesigns" %}
-      <div class="entry-title">
-        <h3>MAR Designs</h3>
-        <p class="entry-meta"><span class="role">Founder</span></p>
-      </div>
-      <span class="when">2020</span>
-    </div>
-    <p>A robotic orthotic for treating pediatric cerebral palsy, spun out of the GRASP Lab. Won the
-    Wharton Startup Challenge Innovation Award and first place at the Rothberg Catalyzer medical
-    device hackathon; went through Penn's NSF I-Corps program.</p>
-  </div>
-
-  <div class="entry">
-    <div class="entry-head">
-      {% include logo.html org="combatrobotics" %}
-      <div class="entry-title">
-        <h3>The Dentist &mdash; BattleBots</h3>
-        <p class="entry-meta"><span class="role">Founder, MIT Combat Robotics &middot; Team co-captain</span></p>
-      </div>
-      <span class="when">2016</span>
-    </div>
-    <p>Founded the MIT Combat Robotics Club and co-captained the team that built <em>The Dentist</em>,
-    a 250 lb robot with a 200 kJ spinning weapon, for the television show. Mostly an
-    education in schedule risk.</p>
-  </div>
-
-  <div class="entry entry-plain">
-    <div class="entry-head">
-      <div class="entry-title"><h3>Student leadership</h3></div>
-      <span class="when">2016 &ndash; 2021</span>
-    </div>
-    <p>President of the Mechanical Engineering Graduate Association (MEGA) at Penn, 2019&ndash;2020.
-    President of the <a href="http://miters.mit.edu/">MIT Electronic Research Society</a>, the
-    student-run makerspace, 2016. Seminar and knowledge lead for the nuclear energy group in
-    <a href="https://workonclimate.org/">Work On Climate</a>, 2021.</p>
-  </div>
-
-  <div class="entry entry-plain">
-    <div class="entry-head">
-      <div class="entry-title"><h3>Teaching &amp; mentoring</h3></div>
-      <span class="when">2015 &ndash; 2021</span>
-    </div>
-    <p>Teaching assistant for MEAM 620 Advanced Robotics (graduate, Penn), 2.678 Electronics for
-    Mechanical Systems and 2.12 Introduction to Robotics (undergraduate, MIT). Mentored three
-    undergraduate researchers at Penn, including
-    <a href="https://www.yufangzhou.xyz/">Fangzhou Yu</a>, now at the
-    <a href="https://rai-inst.com/">Robotics and AI Institute</a>. Also taught with Make Learning
-    Labs, Polygence, and the MIT Educational Studies Program, and spoke on a panel at the Girls
-    Advancing in STEM (GAINS) conference.</p>
-  </div>
-</section>
-
-<section id="skills">
-  <h2>Skills</h2>
-
+  {%- when 'skills' %}
   <dl class="skills">
-    <dt>Languages</dt>
-    <dd>Python, C++, Haskell, MATLAB, LaTeX</dd>
-
-    <dt>Tools</dt>
-    <dd>ROS / ROS 2, PyTorch, TensorFlow, Gazebo, Siemens NX, SolidWorks, Linux, git, Docker,
-    CI (Jenkins, GitHub Actions), GCP, Adobe Photoshop &amp; Lightroom</dd>
-
-    <dt>Domains</dt>
-    <dd>Controls and estimation, fusion diagnostics, optical and mechatronic instrument design,
-    robot learning, simulation, tomographic reconstruction</dd>
+    {%- for group in section.groups %}
+    <dt>{{ group.term }}</dt>
+    <dd>{{ group.detail }}</dd>
+    {%- endfor %}
   </dl>
+
+  {%- endcase %}
 </section>
+{% endfor %}
 
 <section id="cv-foot">
-  <p><a class="pdf-button" href="{{ site.cv | relative_url }}">Download CV (PDF)</a></p>
-  <p class="entry-meta">Questions or a role to discuss? <a href="{{ '/#contact' | relative_url }}">Get in touch</a>.</p>
+  <p><a class="pdf-button" href="{{ profile.links.cv.url | relative_url }}">{{ cv.download }}</a></p>
+  <p class="entry-meta">{{ cv.foot }}</p>
 </section>
 
 </main>
 
-<footer class="site">
-  <p>{{ site.time | date: '%Y' }} &copy; {{ site.author }}</p>
-</footer>
+{% include footer.html %}
 
 </div>

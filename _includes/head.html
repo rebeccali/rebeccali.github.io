@@ -1,32 +1,34 @@
+{%- assign profile = site.data.profile -%}
+{%- comment -%} Pages name their content file with `data:` in front matter, e.g. `data: cv`. {%- endcomment -%}
+{%- assign page_data = site.data[page.data] -%}
+{%- assign site_title = profile.name -%}
+{%- assign page_title = page.title | default: page_data.title | default: site_title -%}
+{%- assign page_desc = page.description | default: page_data.description | default: profile.description -%}
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% assign page_title = page.title | default: site.title %}
-  {% assign page_desc = page.description | default: site.description %}
-  {% assign og_image = site.url | append: '/assets/img/' | append: site.author-img %}
-
-  <title>{% if page.title and page.title != site.title %}{{ page.title }} &middot; {{ site.title }}{% else %}{{ site.title }} &middot; {{ site.tagline }}{% endif %}</title>
+  <title>{% if page_title != site_title %}{{ page_title }} &middot; {{ site_title }}{% else %}{{ site_title }} &middot; {{ profile.tagline }}{% endif %}</title>
   <meta name="description" content="{{ page_desc }}">
-  <meta name="author" content="{{ site.author }}">
+  <meta name="author" content="{{ profile.name }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
 
-  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:site_name" content="{{ site_title }}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ page_title }}">
   <meta property="og:description" content="{{ page_desc }}">
   <meta property="og:url" content="{{ page.url | absolute_url }}">
-  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image" content="{{ profile.portrait | absolute_url }}">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="{{ page_title }}">
   <meta name="twitter:description" content="{{ page_desc }}">
-  <meta name="twitter:image" content="{{ og_image }}">
+  <meta name="twitter:image" content="{{ profile.portrait | absolute_url }}">
 
-  <meta name="theme-color" content="#f4f7f3" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#2b1d25" media="(prefers-color-scheme: dark)">
-  <link rel="shortcut icon" href="{{ '/assets/img/favicon/favicon.ico' | relative_url }}" type="image/x-icon">
+  <meta name="theme-color" content="{{ profile.theme_color.light }}" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="{{ profile.theme_color.dark }}" media="(prefers-color-scheme: dark)">
+  <link rel="shortcut icon" href="{{ profile.favicon | relative_url }}" type="image/x-icon">
 
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
 </head>
