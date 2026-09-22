@@ -16,6 +16,12 @@ linkedin: rebecca-li-15285378
 resume: /assets/resume-rebecca-li-2026-05.pdf
 
 markdown: kramdown
+encoding: utf-8
+
+# The github-pages gem defaults to jekyll-theme-primer when no theme is set,
+# which publishes an unused assets/css/style.css. This site brings its own CSS.
+theme: null
+
 plugins:
 - jekyll-sitemap
 
