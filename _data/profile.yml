@@ -5,12 +5,12 @@
 # _config.yml does not, which is why the content lives here.
 
 name: Rebecca Li
-tagline: Robotics · Fusion Diagnostics
+tagline: Robotics · Fusion Energy · Climate Tech
 description: >-
-  Hardware for Climate Change
+  I build hardware that tackles climate change — bolometry for the SPARC tokamak at Commonwealth Fusion Systems, and robots before that.
 
 # Portrait. Used by the masthead and as the Open Graph / Twitter card image.
-portrait: /assets/img/rmli_headshot_2026.jpg
+portrait: /assets/img/rmli_headshot_2026.png
 portrait_alt: Rebecca Li
 
 # Browser chrome colours, matched to the two themes in assets/css/site.css.
@@ -32,13 +32,16 @@ links:
   email:
     url: mailto:make@rebecca.li
     label: make@rebecca.li
+  linkedin:
+    url: https://www.linkedin.com/in/rebecca-li-15285378/
+    label: LinkedIn
+  google_scholar:
+    url: https://scholar.google.com/citations?user=PAxyimoAAAAJ&hl=en
+    label: Google Scholar
   github:
     url: https://github.com/rebeccali
     label: GitHub
     label_long: github.com/rebeccali
-  linkedin:
-    url: https://www.linkedin.com/in/rebecca-li-15285378/
-    label: LinkedIn
   cv:
     url: /assets/cv-rebecca-li-2026-05.pdf
     label: CV (PDF)

@@ -3,63 +3,52 @@
 
 masthead:
   # Keys from links: in _data/profile.yml.
-  links: [email, github, linkedin]
+  links: [email, github, linkedin, google_scholar]
   cta:
     pdf: CV (PDF)
-    full: Full CV →
+    full: Experience →
 
 about:
   lede: >-
-    I'm a roboticist and controls engineer. I spent the last four years at
-    Commonwealth Fusion Systems leading the bolometry diagnostic for SPARC — designing sensors
-    and cameras that have to survive strong magnetic fields, neutron radiation, and heat, and
-    writing the tomography that turns their signals back into a picture of the plasma.
+    I build hardware tackling climate change. For the last four years that meant plasma cameras 
+    (ask me about bolometry!)
+    with the SPARC Diagnostics team at Commonwealth Fusion Systems. Before that,
+    I worked on robots - surgical simulation, quadrotor swarms, and electric aircraft.
   paragraphs:
     - >-
-      Before fusion I worked on robot learning and control: a research internship at DeepMind
-      on making reinforcement learning policies gentler on real hardware, a simulation lead role at
-      <a href="https://www.vicarioussurgical.com/">Vicarious Surgical</a>, and a masters at Penn's
-      <a href="https://www.grasp.upenn.edu/">GRASP Lab</a> with
-      <a href="https://www.kumarrobotics.org/">Vijay Kumar</a> and
-      <a href="http://www.modlabupenn.org/">Mark Yim</a> on perception-based quadrotor control and
-      graph neural networks for swarms. Before that I did flight controls for an electric VTOL
-      aircraft at Kitty Hawk. I studied mechanical engineering at MIT, where I ran the student
-      makerspace and founded the combat robotics club.
-    - >-
-      The thread running through all of it is hardware that has to work in the physical world,
-      and the software that makes it work. I care most about climate — which is how I ended up in
-      fusion, and roughly where I'd like to stay.
-  # Drop this key (or blank it) when the job search is over and the callout disappears.
+      I want a world resilient to climate change, where people flourish in work, in play,
+      and in community. My piece of that is making cutting-edge tech into cheap-and-robust tech.
+  # Optional key for job search.
   availability: >-
-    <strong>I'm currently looking for my next role.</strong>
-    If that overlaps with what you're working on, <a href="#contact">get in touch</a>.
+    <strong>I'm looking for my next role developing climate technology</strong> (ideally early-stage, ideally near Boston, MA).
+    If you'd like to chat, <a href="#contact">drop me a line</a>.
 
 highlights:
   heading: Where I've worked
   # `org` keys into _data/orgs.yml, which supplies the name, logo and link.
   items:
     - org: cfs
-      role: Senior Diagnostician — bolometry for SPARC
+      role: Senior Diagnostician — Bolometry for SPARC
       when: 2022 – 2026
     - org: vicarious
-      role: Robotics Software Engineer — surgical simulation
+      role: Robotics Software Engineer — Surgical simulation
       when: 2021 – 2022
     - org: deepmind
-      role: Research Scientist Intern — RL on real robots
+      role: Research Scientist Intern — RL on robotic actuation
       when: 2021
     - org: grasp
       name: Penn GRASP Lab          # shorter than the registry name, which the CV uses
-      role: Graduate Researcher — UAV control, swarm learning
+      role: Masters Research — UAV control + Swarms
       when: 2018 – 2021
     - org: kittyhawk
-      role: Controls Engineer — electric VTOL aircraft
+      role: Controls Engineer — Electric VTOL aircraft
       when: 2016 – 2018
     - org: medialab
-      role: Undergraduate Researcher — tactile VR actuators
+      role: Undergraduate Researcher — Tactile VR actuators
       when: 2014 – 2017
   more: Full CV, publications and projects →
 
 contact:
   heading: Contact
   intro: The best way to reach me is email.
-  links: [email, github, linkedin, cv]
+  links: [email, linkedin]

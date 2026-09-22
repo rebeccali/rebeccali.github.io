@@ -7,8 +7,11 @@
      porcelain       #f4f7f3
      midnight-violet #3e2a35
      deep-teal       #4e6e58
+     highlight-blue  #1992bd
    Burnt peach at full strength clears only 2.96:1 on porcelain, so light-mode
    links use it darkened to #a34e41 (5.2:1) — same warmth, legible as text.
+   Highlight blue needs the same treatment: 3.30:1 as given, so it is darkened
+   to #136f91 (5.2:1) wherever it carries text.
    On the dark background the pure colour reads 5.0:1 and is used as given.
    Every text pair below is at or above WCAG AA. */
 
@@ -21,6 +24,9 @@
   --accent-hi: #8c4438;  /* — 6.5:1 */
   --warm:      #e26d5a;  /* burnt-peach — decorative only here */
   --on-accent: #f4f7f3;  /* text on a filled accent — 5.2:1 on the deepened peach */
+  --highlight-blue:    #136f91;  /* highlight-blue deepened — 5.2:1 */
+  --highlight-blue-hi: #0f617b;  /* — 6.5:1 */
+
   --tile:      #ffffff;  /* logo tile face, light in both themes */
   --measure:   43rem;
   --gutter:    1.5rem;
@@ -30,20 +36,6 @@
   --bleed:     0.5rem;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --bg:        #2b1d25;  /* midnight-violet, deepened */
-    --text:      #f4f7f3;  /* — 14.9:1 */
-    --muted:     #a8a4a5;  /* — 6.5:1 */
-    --rule:      #574d52;
-    --accent:    #e26d5a;  /* burnt-peach — 5.0:1 */
-    --accent-hi: #e58676;  /* — 6.1:1 */
-    --warm:      #e26d5a;
-    --on-accent: #2b1d25;  /* — 5.0:1 on burnt-peach */
-    --tile:      #f4f7f3;
-  }
-}
-*/
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -175,11 +167,19 @@ h3 { font-size: 1.06rem; font-weight: 600; margin: 0; line-height: 1.35; }
 .lede { font-size: 1.06rem; }
 
 .availability {
-  border-left: 3px solid var(--warm);
+  border-left: 3px solid var(--highlight-blue);
   padding: .1rem 0 .1rem 1rem;
   margin: 1.5rem 0 0;
   color: var(--text);
 }
+
+/* The one link on the page that asks for something. Blue rather than the
+   usual peach so it reads as an invitation, not another reference link. */
+.availability a {
+  color: var(--highlight-blue);
+  font-weight: 600;
+}
+.availability a:hover, .availability a:focus { color: var(--highlight-blue-hi); }
 
 /* ---------- entries (experience, education, projects) ---------- */
 

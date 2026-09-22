@@ -15,7 +15,7 @@
     {%- if link -%}
       {%- assign label = link.label -%}
       {%- if include.long and link.label_long -%}{%- assign label = link.label_long -%}{%- endif -%}
-  <li><a href="{{ link.url | relative_url }}">{{ label }}</a></li>
+  <li><a href="{{ link.url | relative_url | escape }}">{{ label }}</a></li>
     {%- endif -%}
   {%- endfor %}
 </ul>

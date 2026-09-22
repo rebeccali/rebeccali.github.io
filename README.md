@@ -169,3 +169,9 @@ cp ../rmli_resume_letters/resume/<new>.pdf assets/cv-rebecca-li-<yyyy-mm>.pdf
 ## Deploying
 
 GitHub Pages builds from `master`. Merge and push.
+
+
+## Inspirations
+- https://zekehausfather.com/
+- https://amymakesstuff.com/
+- https://isopack.blogspot.com/

@@ -12,10 +12,10 @@
 # `org` and the entry renders without a logo, leave out `body` and it is just
 # a heading line. Prose may contain inline HTML.
 
-title: CV
-description: Curriculum vitae of Rebecca Li — roboticist and controls engineer.
+title: Experience
+description: Rebecca Li — Experience
 
-heading: Curriculum Vitae
+heading: Experience
 breadcrumb: ← Rebecca Li
 download: Download CV (PDF)
 
