@@ -3,3 +3,12 @@ Gemfile.lock
 vendor/
 .bundle/
 .DS_Store
+
+# LaTeX build artifacts from _resume/
+_resume/*.aux
+_resume/*.fdb_latexmk
+_resume/*.fls
+_resume/*.log
+_resume/*.out
+_resume/*.synctex.gz
+_resume/*.pdf

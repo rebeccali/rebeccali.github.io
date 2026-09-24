@@ -14,7 +14,8 @@ _data/profile.yml     Name, tagline, meta description, portrait, every link,
                       and the CV PDF path.
 _data/home.yml        Home page: bio paragraphs, the "where I've worked" list,
                       the contact block.
-_data/cv.yml          CV page: every section, entry, publication and skill.
+_data/cv.yml          CV page content. GENERATED from the resume - see below.
+_data/cv_page.yml     CV page furniture: title, headings, nav labels.
 _data/orgs.yml        Logo registry: one entry per company or org, shared by
                       the home page and the CV.
 
@@ -27,6 +28,9 @@ _includes/authors.html  An author list, with my name bolded.
 _includes/links.html  A <ul> of links, chosen by key from profile.yml.
 _includes/logo.html   An org's logo, or a lettermark if it has no file.
 _includes/footer.html The copyright line.
+
+_resume/resume.tex    The resume, in LaTeX. Source of truth for the CV.
+_scripts/build_cv.py  Reads the resume, writes _data/cv.yml.
 
 assets/img/logos/     Square logo files, 128x128.
 assets/css/site.css   The stylesheet. Hand-written, no build step.
@@ -51,18 +55,8 @@ Each data file starts with a comment explaining its own shape; the short version
 - **Change a job title, date or paragraph** — find it in `_data/home.yml` (home
   page) or `_data/cv.yml` (CV) and edit the string. Prose fields accept inline
   HTML, so a `<a href="...">link</a>` in the middle of a sentence is fine.
-- **Add a CV entry** — add an item to that section's `entries:` list. Only
-  `title` is required. Leave out `org` and it renders without a logo (the style
-  the "Student leadership" entry uses); leave out `body` and it is just a
-  heading line.
-- **Add a CV section** — add to `sections:` in `_data/cv.yml` with an `id`,
-  `heading` and a `type` of `entries`, `publications` or `skills`. The anchor
-  nav at the top of the page is generated from that list, so it picks the new
-  section up automatically. Add `nav:` to give the nav a shorter label than the
-  heading.
-- **Add a publication** — `authors` is a plain list of names. Mine is bolded
-  wherever it appears, and the last two names are joined with "and" unless the
-  list ends in `et al.`
+- **Change anything on the CV** — edit `_resume/resume.tex` and re-run the
+  build script. `_data/cv.yml` is generated; edits to it are overwritten.
 - **Change an email address or profile link** — `links:` in
   `_data/profile.yml`, once, for every page that uses it.
 - **Take down the "currently looking" callout** — delete the `availability:`
@@ -156,15 +150,62 @@ render in isolation from the page:
 
 ## Updating the CV
 
-The CV is authored in LaTeX in a separate repo (`rmli_resume_letters/resume/`).
-After rebuilding the PDF there, copy it in and point `links.cv.url` in
+`_resume/resume.tex` is the source of truth for both the PDF and the `/cv/`
+page. Edit it, then rebuild both:
+
+```sh
+cd _resume && latexmk -pdf resume.tex        # the PDF
+cd .. && python3 _scripts/build_cv.py        # _data/cv.yml, which /cv/ renders
+```
+
+To publish a new PDF, copy it into `assets/` and point `links.cv.url` in
 `_data/profile.yml` at the new filename:
 
 ```sh
-cp ../rmli_resume_letters/resume/<new>.pdf assets/cv-rebecca-li-<yyyy-mm>.pdf
+cp _resume/resume.pdf assets/cv-rebecca-li-<yyyy-mm>.pdf
 ```
 
-`cv.html` is a fleshed-out superset of the PDF and is maintained by hand.
+`python3 _scripts/build_cv.py --check` exits non-zero when `_data/cv.yml` is
+out of date, which is the thing to run before pushing if you have edited the
+resume.
+
+### How the parser sees the resume
+
+The script reads the semantic macros defined in the resume preamble, grouped
+by the `\section` they sit under:
+
+| macro | arguments |
+| --- | --- |
+| `\resumeEducation` | degree, location, dates |
+| `\resumeJob` | organisation, role, location, dates, description |
+| `\resumePublication` | authors, title, url (may be empty), venue, year |
+| `\resumeSkill` | group, items |
+| `\resumeLeadership` | one line of text |
+
+Everything else in the file is invisible to the website, including anything
+below `\end{document}`, which is where retired sections are parked.
+
+Two tables in `_scripts/build_cv.py` connect the resume to the site:
+
+- `SECTIONS` — one row per `\section`, giving its anchor id, its nav label and
+  which macro to read. A section that is not listed is an error, so a new one
+  cannot quietly go missing from the site.
+- `ORG_KEYS` — which logo in `_data/orgs.yml` belongs to an entry, matched as a
+  substring of the organisation or degree. An entry that matches nothing is an
+  error rather than a silently logo-less row.
+
+Inline LaTeX is converted as you would expect: `\href` becomes a link,
+`\textbf` and `\textit` become `<strong>` and `<em>`, `--` becomes an en
+dash, `\CC` becomes C++, and unknown macros are dropped.
+
+### Editing the resume without breaking the PDF
+
+The layout is whitespace-sensitive in two places, both marked with comments:
+
+- A blank line inside a list environment is a paragraph break and changes the
+  spacing. Use a comment-only `%` line to separate entries in the source.
+- `\resumeSubheadingCleanLong` ends with two deliberate blank lines. They set
+  the gap between employment entries.
 
 ## Deploying
 

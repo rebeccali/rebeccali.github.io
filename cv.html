@@ -1,18 +1,19 @@
 ---
 layout: default
 permalink: /cv/
-data: cv
+data: cv_page
 ---
 {%- assign profile = site.data.profile -%}
+{%- assign page_ = site.data.cv_page -%}
 {%- assign cv = site.data.cv -%}
 
 <div class="page">
 
 <header class="page-head">
-  <p class="breadcrumb"><a href="{{ '/' | relative_url }}">{{ cv.breadcrumb }}</a></p>
+  <p class="breadcrumb"><a href="{{ '/' | relative_url }}">{{ page_.breadcrumb }}</a></p>
   <div class="page-head-row">
-    <h1>{{ cv.heading }}</h1>
-    <a class="pdf-button" href="{{ profile.links.cv.url | relative_url }}">{{ cv.download }}</a>
+    <h1>{{ page_.heading }}</h1>
+    <a class="pdf-button" href="{{ profile.links.cv.url | relative_url }}">{{ page_.download }}</a>
   </div>
 </header>
 
@@ -41,7 +42,7 @@ data: cv
   <ol class="pubs">
     {%- for pub in section.entries %}
     <li>{% include authors.html authors=pub.authors %}
-      &ldquo;<a href="{{ pub.url }}">{{ pub.title }}</a>.&rdquo;
+      &ldquo;{% if pub.url %}<a href="{{ pub.url | escape }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}.&rdquo;
       <span class="venue">{{ pub.venue }}</span>, {{ pub.year }}.</li>
     {%- endfor %}
   </ol>
@@ -54,13 +55,20 @@ data: cv
     {%- endfor %}
   </dl>
 
+  {%- when 'bullets' %}
+  <ul class="bullets">
+    {%- for item in section.items %}
+    <li>{{ item }}</li>
+    {%- endfor %}
+  </ul>
+
   {%- endcase %}
 </section>
 {% endfor %}
 
 <section id="cv-foot">
-  <p><a class="pdf-button" href="{{ profile.links.cv.url | relative_url }}">{{ cv.download }}</a></p>
-  <p class="entry-meta">{{ cv.foot }}</p>
+  <p><a class="pdf-button" href="{{ profile.links.cv.url | relative_url }}">{{ page_.download }}</a></p>
+  <p class="entry-meta">{{ page_.foot }}</p>
 </section>
 
 </main>
