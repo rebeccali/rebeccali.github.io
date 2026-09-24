@@ -1,59 +1,50 @@
 ---
-title: Rebecca Li
-timezone: UTC
-description: 'Rebecca Li'
+# Build settings only. The site's content lives in _data/:
+#
+#   _data/profile.yml  name, tagline, meta description, portrait, links, CV
+#   _data/home.yml     the home page
+#   _data/cv.yml       the CV page
+#   _data/orgs.yml     logo registry, shared by both pages
+#
+# Anything edited here needs a `jekyll serve` restart; _data files do not.
 
-permalink: ":title/"
+url: https://rebecca.li
 baseurl: ''
-url: htttp://rebecca.li
+timezone: UTC
+
 author: Rebecca Li
 author-img: 41944096_2104931262885349_7854223547646869504_o.jpg
 about-author: Climate Helper 
+tagline: Robotics · Controls · Fusion Diagnostics
+
+email: make@rebecca.li
 github: rebeccali
-# email: rebecca@mit.edu
-# safe: false
-discus-identifier: rebeccali
-analytics:
+linkedin: rebecca-li-15285378
+cv: /assets/cv-rebecca-li-2026-05.pdf
+
 markdown: kramdown
-plugins_dir:
-- _plugins
+encoding: utf-8
+
+# The github-pages gem defaults to jekyll-theme-primer when no theme is set,
+# which publishes an unused assets/css/style.css. This site brings its own CSS.
+theme: null
+
+plugins:
 - jekyll-sitemap
-- jekyll-paginate
-- jekyll-gallery-generator
-paginate: 10
-paginate_path: "/blog/page:num/"
+
 exclude:
-- node_modules
-- gulpfile.js
-- package.json
-- yarn.lock
-gallery:
-  dir: photography
-  symlink: false
-  title: Photography
-  title_prefix: 'Photography: '
-  sort_field: date_time
-  thumbnail_size:
-    x: 400
-    y: 400
-  galleries:
-    random:
-      best_image: cows.png
-      info:
-        desc: UnsortedImages, 2017. Copyright Rebecca Li.
-    neerja:
-      best_image: large-LYC_5995.png
-      info:
-        desc: My friend Neerja. Copyright Rebecca Li.
-    iceland:
-      best_image: chair.jpg
-      info:
-        desc: Iceland, 2017. Copyright Rebecca Li.
-    central_park:
-      best_image: bigbird.jpg
-      info:
-        desc: Central Park, 2017. Copyright Rebecca Li.
-    tiny_studio:
-      best_image: big.jpg
-      info:
-        desc: Tiny flower studio, 2018. Copyright Rebecca Li.
+- _archive
+- vendor
+- .bundle
+- Gemfile
+- Gemfile.lock
+- README.md
+- LICENSE
+
+# The photography galleries stay reachable at their old URLs but are
+# deliberately not linked from the site — keep them out of the sitemap too.
+defaults:
+- scope:
+    path: photography
+  values:
+    sitemap: false

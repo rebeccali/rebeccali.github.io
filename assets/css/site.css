@@ -1,0 +1,425 @@
+/* rebecca.li — single-page site. Hand-written, no build step.
+   Note: assets/css/main.css and gallery.css belong to the legacy
+   photography galleries. Do not merge this file into them. */
+
+/* Palette
+     burnt-peach     #e26d5a
+     porcelain       #f4f7f3
+     midnight-violet #3e2a35
+     deep-teal       #4e6e58
+     highlight-blue  #1992bd
+   Burnt peach at full strength clears only 2.96:1 on porcelain, so light-mode
+   links use it darkened to #a34e41 (5.2:1) — same warmth, legible as text.
+   Highlight blue needs the same treatment: 3.30:1 as given, so it is darkened
+   to #136f91 (5.2:1) wherever it carries text.
+   On the dark background the pure colour reads 5.0:1 and is used as given.
+   Every text pair below is at or above WCAG AA. */
+
+:root {
+  --bg:        #f4f7f3;  /* porcelain */
+  --text:      #3e2a35;  /* midnight-violet — 12.3:1 */
+  --muted:     #6c5d64;  /* — 5.7:1 */
+  --rule:      #dededc;
+  --accent:    #a34e41;  /* burnt-peach deepened — 5.2:1 */
+  --accent-hi: #8c4438;  /* — 6.5:1 */
+  --warm:      #e26d5a;  /* burnt-peach — decorative only here */
+  --on-accent: #f4f7f3;  /* text on a filled accent — 5.2:1 on the deepened peach */
+  --highlight-blue:    #136f91;  /* highlight-blue deepened — 5.2:1 */
+  --highlight-blue-hi: #0f617b;  /* — 6.5:1 */
+
+  --tile:      #ffffff;  /* logo tile face, light in both themes */
+  --measure:   43rem;
+  --gutter:    1.5rem;
+  /* Section rules (h2, the nav band, footer tops) run this far past the text
+     on each side, so a section boundary reads before you reach the words.
+     Narrow screens get a smaller bleed to protect the 16px edge gutter. */
+  --bleed:     0.5rem;
+}
+
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Charter, "Bitstream Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter) 5rem;
+}
+
+/* Once the page is wide enough to sit clear of the viewport edges, the
+   section rules can bleed the full gutter. */
+@media (min-width: 48rem) {
+  :root { --bleed: var(--gutter); }
+}
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover, a:focus { color: var(--accent-hi); }
+
+p { margin: 0 0 1em; }
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 3.5rem 0 1.75rem;
+}
+
+.masthead .portrait {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: none;
+  filter: grayscale(12%);
+}
+
+.masthead h1 {
+  font-size: 2.1rem;
+  line-height: 1.15;
+  margin: 0 0 .3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: .95rem;
+  margin: 0 0 .7rem;
+}
+
+/* ---------- inline link rows ---------- */
+
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .9rem;
+  font-size: .92rem;
+}
+
+/* Separator hangs off the END of each item so it never starts a wrapped line. */
+.links li:not(:last-child)::after {
+  content: "·";
+  color: var(--muted);
+  margin-left: .9rem;
+}
+
+.resume-link { font-weight: 600; }
+
+/* ---------- nav ---------- */
+
+nav.anchors {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: .6rem var(--bleed);
+  margin: 0 calc(-1 * var(--bleed)) 2.5rem;
+}
+
+nav.anchors ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .3rem 1.25rem;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+
+nav.anchors a { color: var(--muted); text-decoration: none; }
+nav.anchors a:hover, nav.anchors a:focus { color: var(--accent); text-decoration: underline; }
+
+/* ---------- sections ---------- */
+
+section { margin-bottom: 3rem; scroll-margin-top: 4rem; }
+
+h2 {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  margin: 0 calc(-1 * var(--bleed)) 1.25rem;
+  padding: 0 var(--bleed) .4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+h3 { font-size: 1.06rem; font-weight: 600; margin: 0; line-height: 1.35; }
+
+.lede { font-size: 1.06rem; }
+
+.availability {
+  border-left: 3px solid var(--highlight-blue);
+  padding: .1rem 0 .1rem 1rem;
+  margin: 1.5rem 0 0;
+  color: var(--text);
+}
+
+/* The one link on the page that asks for something. Blue rather than the
+   usual peach so it reads as an invitation, not another reference link. */
+.availability a {
+  color: var(--highlight-blue);
+  font-weight: 600;
+}
+.availability a:hover, .availability a:focus { color: var(--highlight-blue-hi); }
+
+/* Loose list sections (leadership), which carry no logo column. */
+.bullets {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.bullets li { margin-bottom: .45rem; }
+.bullets li:last-child { margin-bottom: 0; }
+
+/* ---------- entries (experience, education, projects) ---------- */
+
+.entry { margin-bottom: 1.9rem; }
+.entry:last-child { margin-bottom: 0; }
+
+.entry-head {
+  display: grid;
+  grid-template-columns: var(--logo-size) 1fr auto;
+  gap: 0 .9rem;
+  align-items: start;
+}
+
+/* Entries with no organisation (aggregate rows) skip the logo column. */
+.entry-plain .entry-head { grid-template-columns: 1fr auto; }
+
+.entry-title { min-width: 0; }
+.entry-title h3 { margin-top: .1rem; }
+
+.entry-meta, .when {
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.when {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.entry p { margin: .5rem 0 0; }
+.entry-title .entry-meta { margin: .15rem 0 0; }
+
+.role { font-style: italic; }
+
+/* ---------- publications ---------- */
+
+.pubs { list-style: none; margin: 0; padding: 0; }
+
+.pubs li {
+  margin-bottom: 1.1rem;
+  padding-left: 1.4rem;
+  text-indent: -1.4rem;
+  font-size: .97rem;
+}
+
+.pubs li:last-child { margin-bottom: 0; }
+.pubs .venue { font-style: italic; }
+.pubs .me { font-weight: 700; }
+
+/* ---------- compact lists ---------- */
+
+.plain { list-style: none; margin: 0; padding: 0; }
+.plain > li { margin-bottom: .75rem; }
+.plain > li:last-child { margin-bottom: 0; }
+
+.skills { margin: 0; }
+.skills dt {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--muted);
+  margin-bottom: .2rem;
+}
+.skills dd { margin: 0 0 1rem; font-size: .97rem; }
+.skills dd:last-child { margin-bottom: 0; }
+
+/* ---------- footer ---------- */
+
+footer.site {
+  border-top: 1px solid var(--rule);
+  margin: 0 calc(-1 * var(--bleed));
+  padding: 1.25rem var(--bleed) 0;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+/* ---------- logos ---------- */
+
+:root { --logo-size: 44px; }
+
+.logo {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  overflow: hidden;
+  /* Logos are mostly dark marks, so the tile keeps a light face in both
+     themes rather than letting them vanish against a dark page. */
+  background: var(--tile);
+  border: 1px solid var(--rule);
+}
+
+.logo img {
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+}
+
+.logo-mono {
+  background: var(--tint, var(--accent));
+  /* Keeps .logo's 1px rule border rather than clearing it, so a mono tile
+     always has a visible edge even if its tint sits close to the page. */
+  color: #f4f7f3;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+/* ---------- org list (home page highlights) ---------- */
+
+.orgs { list-style: none; margin: 0; padding: 0; }
+
+.orgs li {
+  display: grid;
+  grid-template-columns: var(--logo-size) 1fr auto;
+  gap: 0 .9rem;
+  align-items: center;
+  padding: .7rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.orgs li:last-child { border-bottom: 0; }
+
+.org-text { min-width: 0; }
+.org-name { display: block; font-weight: 600; }
+.org-role { display: block; color: var(--muted); font-size: .88rem; }
+
+.more { margin-top: 1.25rem; font-size: .95rem; }
+
+/* ---------- buttons ---------- */
+
+.cta { margin: .9rem 0 0; display: flex; flex-wrap: wrap; gap: .5rem .9rem; align-items: center; }
+
+.pdf-button {
+  display: inline-block;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: var(--on-accent);
+  background: var(--accent);
+  padding: .45rem .9rem;
+  border-radius: 6px;
+}
+
+.pdf-button:hover, .pdf-button:focus { background: var(--accent-hi); color: var(--on-accent); }
+
+.text-button {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+/* ---------- CV page head ---------- */
+
+.page-head { padding: 3rem 0 1.5rem; }
+
+.breadcrumb {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: .82rem;
+  margin: 0 0 1rem;
+}
+
+.breadcrumb a { text-decoration: none; color: var(--muted); }
+.breadcrumb a:hover, .breadcrumb a:focus { color: var(--accent); text-decoration: underline; }
+
+.page-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.page-head h1 { font-size: 2rem; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+
+#cv-foot {
+  border-top: 1px solid var(--rule);
+  margin: 0 calc(-1 * var(--bleed));
+  padding: 1.5rem var(--bleed) 0;
+}
+#cv-foot p { margin: 0 0 .6rem; }
+
+/* ---------- narrow screens ---------- */
+
+@media (max-width: 34rem) {
+  body { font-size: 17px; }
+
+  .masthead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+    padding-top: 2.5rem;
+  }
+
+  .masthead .portrait { width: 92px; height: 92px; }
+  .masthead h1 { font-size: 1.8rem; }
+
+  :root { --logo-size: 38px; }
+
+  .entry-head { grid-template-columns: var(--logo-size) 1fr; }
+  .entry-plain .entry-head { grid-template-columns: 1fr; }
+  .entry-head .when { grid-column: 2; }
+  .entry-plain .entry-head .when { grid-column: 1; }
+  .when { margin-top: .15rem; }
+
+  .orgs li { grid-template-columns: var(--logo-size) 1fr; }
+  .orgs .when { grid-column: 2; }
+
+  .page-head h1 { font-size: 1.7rem; }
+
+  nav.anchors ul { gap: .3rem 1rem; font-size: .75rem; }
+}
+
+/* ---------- print ---------- */
+
+@media print {
+  :root { --bg: #fff; --text: #000; --muted: #444; --rule: #bbb;
+           --accent: #000; --accent-hi: #000; --warm: #666;
+           --on-accent: #fff; --tile: #fff; }
+  body { font-size: 11pt; }
+  nav.anchors, .masthead .portrait { display: none; }
+  .page { max-width: none; padding: 0; }
+  section { page-break-inside: avoid; margin-bottom: 1.5rem; }
+  a { text-decoration: none; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #444; }
+}

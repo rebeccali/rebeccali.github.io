@@ -1,0 +1,170 @@
+# GENERATED FILE - do not edit.
+#
+# Built from _resume/resume.tex by _scripts/build_cv.py.
+# Edit the résumé and re-run:
+#
+#     python3 _scripts/build_cv.py
+#
+# Page furniture (title, nav labels, section ids) lives in _data/cv_page.yml,
+# which this script never touches.
+
+sections:
+  - id: education
+    heading: Education
+    type: entries
+    entries:
+      - org: grasp
+        title: M.S. in Robotics – University of Pennsylvania, GRASP Lab
+        meta: Philadelphia, PA
+        when: '2018 – 2020'
+      - org: mit
+        title: B.S. in Mechanical Engineering – MIT
+        meta: Cambridge, MA
+        when: '2013 – 2017'
+  - id: experience
+    heading: Employment
+    type: entries
+    entries:
+      - org: cfs
+        title: Commonwealth Fusion Systems
+        role: Diagnostician / Senior Diagnostician
+        meta: Devens, MA
+        when: '2023 – 2024 / 2024 – 2026'
+        body: >-
+          Lead project management, design, testing and implementation of the SPARC bolometry
+          diagnostic. Incorporated physics requirements for plasma sensing; designed bolometry
+          sensors and cameras electrics and mechanics within highly changing magnetic fields,
+          radiation, and high temperature. Coordinated work across tokamak systems, CAD Design,
+          supply chain, project management org. Developed tomography algorithms for plasma
+          reconstruction.
+      - org: cfs
+        title: Commonwealth Fusion Systems
+        role: Diagnostics Support Engineer
+        meta: Somerville, MA
+        when: '2022 – 2023'
+        body: >-
+          Designing active optics and mechatronic interfaces for diagnostic systems on the SPARC
+          fusion device.
+      - org: vicarious
+        title: Vicarious Surgical
+        role: Robotics Software Engineer
+        meta: Waltham, MA
+        when: '2021 – 2022'
+        body: >-
+          Technical lead of a physics-based, photorealistic robotic surgery simulation for
+          synthetic data generation and machine learning training in ROS2 / Gazebo. Implemented
+          and managed CI and best coding practices, and performing code reviews for more junior
+          team members.
+      - org: deepmind
+        title: DeepMind
+        role: Research Scientist Intern
+        meta: London, UK (Remote)
+        when: '2021'
+        body: >-
+          Research in improving deep reinforcement learning (RL) policies on robots for reduced
+          actuator wear-and-tear and safer interaction using open-source GCP infrastructure.
+      - org: grasp
+        title: University of Pennsylvania, GRASP Lab
+        role: Graduate Researcher
+        meta: Philadelphia, PA
+        when: '2018 – 2021'
+        body: >-
+          Designed and verified a robust, perception-based controller for a UAV system. Designed
+          dynamics simulations with aero model for a 1cm, single-actuator UAV as a design tool.
+          Designed and implemented ML pipeline for graph neural networks applied to
+          decentralized swarm control.
+      - org: kittyhawk
+        title: Kitty Hawk Corp
+        role: Controls Engineer
+        meta: Palo Alto, CA
+        when: '2017 – 2018'
+        body: >-
+          Designed and tested autonomous take–off, landing and navigation planning and control
+          (LQR, kalman filters, online optimizations for actuator allocation) on an electric
+          VTOL aircraft. Developed infrastructure for Monte Carlo simulations and flight data
+          analysis.
+      - org: kittyhawk
+        title: Kitty Hawk Corp
+        role: Mechanical Engineer Intern
+        meta: Palo Alto, CA
+        when: Summer 2016
+        body: >-
+          Prototyped ballistic recovery system with ultra-light parachutes and off the shelf
+          rockets.
+      - org: medialab
+        title: MIT Media Lab, Tangible Media Group
+        role: Undergraduate Researcher
+        meta: Cambridge, MA
+        when: '2014 – 2017'
+        body: >-
+          Designed and fabricated 2D linear actuator array electromechanicals for VR-based
+          tactile simulation.
+  - id: publications
+    heading: Selected Publications &amp; Patents
+    nav: Publications
+    type: publications
+    entries:
+      - authors: [Rebecca Li, et al.]
+        title: Development of a bolometry diagnostic for SPARC
+        venue: Review of Scientific Instruments
+        year: '2024'
+        url: 'https://doi.org/10.1063/5.0219548'
+      - authors: [Walker Gosrich, Siddharth Mayya, Rebecca Li, et al.]
+        title: Coverage Control in Multi-Robot Systems via Graph Neural Networks
+        venue: IEEE International Conference on Robotics and Automation (ICRA)
+        year: '2022'
+        url: 'https://arxiv.org/abs/2109.15278'
+      - authors: [Rebecca Li, et al.]
+        title: Robust, Perception Based Control with Quadrotors
+        venue: IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+        year: '2020'
+        url: 'https://arxiv.org/abs/2007.04220'
+      - authors:
+          - Dinesh Thakur
+          - Yuezhan Tao
+          - Rebecca Li
+          - Alex Zhou
+          - Vijay Kumar
+          - Aleksandr Kushleyev
+        title: Swarm of Inexpensive Heterogeneous Micro Aerial Vehicles
+        venue: International Symposium on Experimental Robotics (ISER)
+        year: '2020'
+        url: 'https://www.semanticscholar.org/paper/Swarm-of-Inexpensive-Heterogeneous-Micro-Aerial-Thakur-Tao/a5f82de78ca2e0ae5518d6afac6258ddccfdb1d2'
+      - authors: [Damon Vander Lind, Rebecca Li]
+        title: Attached rocket parachute deployment system
+        venue: U.S. Patent 10,507,929
+        year: '2019'
+  - id: skills
+    heading: Skills
+    type: skills
+    groups:
+      - term: Programming Languages
+        detail: Python, C++, Haskell, MATLAB, LaTeX
+      - term: Software
+        detail: >-
+          Siemens NX, Solidworks, git, docker, CI (Jenkins, Github Actions), Linux, ROS,
+          TensorFlow/PyTorch, Adobe Photoshop/Lightroom, Microsoft Word/Excel/Powerpoint, Google
+          Suite, WordPress, GCP.
+  - id: leadership
+    heading: Leadership
+    type: bullets
+    items:
+      - >-
+        Founder - <a href="https://mar-designs.com">MAR Designs</a>. Developed robotic orthotic
+        for treatment of pediatric cerebral palsy, won Wharton Startup Challenge Innovation
+        Award, the Rothberg Catalyzer Hackathon, and Penn I-Corps. <em>2020.</em>
+      - Seminar and knowledge Lead for Nuclear Energy group in Work On Climate <em>2020</em>
+      - >-
+        President of the Mechanical Engineering Graduate Association (MEGA), UPenn. <em>2019 –
+        2020</em>
+      - President of the MIT Electronic Research Society (MITERS). <em>2016</em>
+      - >-
+        Founder of MIT Combat Robotics Club, Co-Captain of BattleBots team for <em>The
+        Dentist</em>. <em>2016</em>
+      - >-
+        Teaching Assistant: Advanced Robotics (Graduate), Electronics for Mechanical Systems
+        (Undergraduate), Introduction to Robotics (Undergraduate).
+      - >-
+        Mentoring: <a href="https://www.yufangzhou.xyz/">Undergraduate Researcher Fangzhou Yu
+        (now at <a href="https://rai-inst.com/">RAI</a>)</a>, Make Learning Labs, MIT
+        Educational Studies Program

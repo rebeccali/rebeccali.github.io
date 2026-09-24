@@ -1,0 +1,11 @@
+# Page furniture for /cv/. The CV content itself comes from _data/cv.yml,
+# which is generated from _resume/resume.tex — this file is hand-written and
+# the build script never touches it.
+
+title: CV
+description: Curriculum vitae of Rebecca Li — roboticist and controls engineer.
+
+heading: Curriculum Vitae
+breadcrumb: ← Rebecca Li
+download: Download CV (PDF)
+foot: Questions or a role to discuss? <a href="/#contact">Get in touch</a>.

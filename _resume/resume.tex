@@ -1,0 +1,360 @@
+%---------------------------------------------------------------------------
+% Résumé — Rebecca Li
+% License : MIT
+%
+% SOURCE OF TRUTH for the CV. Two things are built from this file:
+%
+%   PDF      latexmk -pdf resume.tex
+%              then copy the PDF to assets/ and point profile.yml at it
+%   Website  python3 _scripts/build_cv.py
+%              regenerates _data/cv.yml, which renders at /cv/
+%
+% The website parser reads the semantic macros in the CONTENT section —
+% \resumeEducation, \resumeJob, \resumePublication, \resumeSkill,
+% \resumeLeadership — grouped by the \section they sit under. Keep entries
+% inside those macros and the website keeps working; the parser stops at
+% \end{document}, so anything below that is invisible to both outputs.
+%---------------------------------------------------------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+%---------------------------------------------------------------------------
+% Packages
+%---------------------------------------------------------------------------
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{hanging}
+\usepackage{makecell}
+\usepackage{array}
+
+%---------------------------------------------------------------------------
+% Page setup
+%---------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}                                  % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.575in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1.25in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+	\vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-3pt}]
+
+\newcolumntype{L}{>{\arraybackslash}p{0.8\textwidth}}
+\newcolumntype{K}{>{\arraybackslash}m{0.6\textwidth}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
+
+%---------------------------------------------------------------------------
+% Layout primitives
+%---------------------------------------------------------------------------
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+% One bold line, right-aligned trailer.
+\newcommand{\resumeSubheadingOnly}[2]{
+	\vspace{-1pt}\item[]
+	\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+		\textbf{#1} & #2 \\
+	\end{tabular*}\vspace{-2pt}
+}
+
+% Bold line with a right-aligned location, then a wrapped body paragraph
+% with the dates set against it on the right.
+\newcommand{\resumeSubheadingCleanLong}[4]{
+	\vspace{-1pt}\item[]
+	\begin{tabular*}{0.97\textwidth}{L@{\extracolsep{\fill}}r}
+		\textbf{#1} & {\small #2} \\
+		\textit{\small #4} &  \textit{\small #3} \\
+	\end{tabular*}\vspace{-0pt}
+
+	% The two paragraph breaks below are load-bearing: they set the gap
+	% between employment entries. Removing them tightens the whole section.
+
+}
+
+% Bold term, then a run-on description.
+\newcommand{\resumeItem}[2]{
+	\item[]\small{
+		\textbf{#1}{: #2 \vspace{-2pt}}
+	}
+}
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-5pt}}
+
+% A line with a right-aligned date, for loose lists.
+\newcommand{\itemAndDate}[2]{
+	\vspace{-1pt}\item[]
+	\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+		#1 & \textit{#2} \\
+	\end{tabular*}\vspace{-8pt}
+}
+
+%---------------------------------------------------------------------------
+% Semantic entry macros — THE WEBSITE PARSER READS THESE
+%
+% Each one wraps a layout primitive above and keeps one field per argument,
+% so the same entry can be typeset into the PDF and read out as data.
+% Adding a field here means teaching _scripts/build_cv.py about it.
+%---------------------------------------------------------------------------
+
+% \resumeEducation{degree}{location}{dates}
+\newcommand{\resumeEducation}[3]{%
+	\resumeSubheadingOnly{#1}{#2 \textit{#3}}
+}
+
+% \resumeJob{organisation}{role}{location}{dates}{description}
+\newcommand{\resumeJob}[5]{%
+	\resumeSubheadingCleanLong{#1 - #2}{#3}{#4}{#5}
+}
+
+% \resumePublication{authors}{title}{url}{venue}{year} — url may be empty.
+\newcommand{\resumePublication}[5]{%
+	\setlength{\leftskip}{0.5cm}%
+	\small
+	#1 ``\ifx\relax#3\relax #2\else\href{#3}{#2}\fi," \textit{#4}. #5.
+
+	\vspace{0.25em}
+}
+
+% \resumeSkill{group}{items}
+\newcommand{\resumeSkill}[2]{\resumeSubItem{#1}{#2}}
+
+% \resumeLeadership{line}
+\newcommand{\resumeLeadership}[1]{\item{#1}}
+
+%===========================================================================
+%  CONTENT
+%===========================================================================
+\begin{document}
+
+%----------------------------- HEADING -------------------------------------
+% Not read by the website — identity lives in _data/profile.yml.
+\begin{tabular*}{\textwidth}{K@{\extracolsep{\fill}}r}
+	\textbf{\href{https://www.linkedin.com/in/rebecca-li-15285378/}{\Large Rebecca Li}} & \href{mailto:make@rebecca.li}{make@rebecca.li}  +1 617 899 2036\\
+\end{tabular*}
+
+%----------------------------- EDUCATION -----------------------------------
+\section{Education}
+\resumeSubHeadingListStart
+%
+\resumeEducation
+{M.S. in Robotics -- University of Pennsylvania, GRASP Lab}
+{Philadelphia, PA}
+{2018 -- 2020}
+%
+\vspace{-15pt}
+%
+\resumeEducation
+{B.S. in Mechanical Engineering -- MIT}
+{Cambridge, MA}
+{2013 -- 2017}
+\resumeSubHeadingListEnd
+
+\vspace{-1.5em}
+
+%----------------------------- EMPLOYMENT ----------------------------------
+\section{Employment}
+\resumeSubHeadingListStart
+%
+\resumeJob
+{Commonwealth Fusion Systems}
+{Diagnostician / Senior Diagnostician}
+{Devens, MA}
+{\makecell{2023 -- 2024 /\\ 2024 -- 2026}}
+{Lead project management, design, testing and implementation of the SPARC bolometry diagnostic. Incorporated physics requirements for plasma sensing; designed bolometry sensors and cameras electrics and mechanics within highly changing magnetic fields, radiation, and high temperature. Coordinated work across tokamak systems, CAD Design, supply chain, project management org. Developed \mbox{tomography} algorithms for plasma reconstruction.}
+
+\resumeJob
+{Commonwealth Fusion Systems}
+{Diagnostics Support Engineer}
+{Somerville, MA}
+{2022 -- 2023}
+{Designing active optics and mechatronic interfaces for diagnostic systems on the SPARC fusion device.}
+
+\resumeJob
+{Vicarious Surgical}
+{Robotics Software Engineer}
+{Waltham, MA}
+{2021 -- 2022}
+{Technical lead of a physics-based, photorealistic robotic surgery simulation for synthetic data generation and machine learning training in ROS2 / Gazebo. Implemented and managed CI and best coding practices, and performing code reviews for more junior team members.}
+
+\resumeJob
+{DeepMind}
+{Research Scientist Intern}
+{London, UK (Remote)}
+{2021}
+{Research in improving deep reinforcement learning (RL) policies on robots for reduced actuator wear-and-tear and safer interaction using open-source GCP infrastructure.}
+
+\resumeJob
+{University of Pennsylvania, GRASP Lab}
+{Graduate Researcher}
+{Philadelphia, PA}
+{2018 -- 2021}
+{Designed and verified a robust, perception-based controller for a UAV system. Designed dynamics simulations with aero model for a 1cm, single-actuator UAV as a design tool. Designed and implemented ML pipeline for graph neural networks applied to decentralized swarm control.}
+
+\resumeJob
+{Kitty Hawk Corp}
+{Controls Engineer}
+{Palo Alto, CA}
+{2017 -- 2018}
+{Designed and tested autonomous take--off, landing and navigation planning and control (LQR, kalman filters, online optimizations for actuator allocation) on an electric VTOL aircraft. Developed infrastructure for Monte Carlo simulations and flight data analysis.}
+
+\resumeJob
+{Kitty Hawk Corp}
+{Mechanical Engineer Intern}
+{Palo Alto, CA}
+{Summer 2016}
+{Prototyped ballistic recovery system with ultra-light parachutes and off the shelf rockets.}
+
+\resumeJob
+{MIT Media Lab, Tangible Media Group}
+{Undergraduate Researcher}
+{Cambridge, MA}
+{2014 -- 2017}
+{Designed and fabricated 2D linear actuator array electromechanicals for VR-based tactile simulation.}
+
+\resumeSubHeadingListEnd
+
+%--------------------- PUBLICATIONS & PATENTS ------------------------------
+\section{Selected Publications \& Patents}
+\begin{hangparas}{.25in}{1}
+%
+\resumePublication
+{\textbf{Rebecca Li}, et al.}
+{Development of a bolometry diagnostic for SPARC}
+{https://doi.org/10.1063/5.0219548}
+{Review of Scientific Instruments}
+{2024}
+
+\resumePublication
+{Walker Gosrich, Siddharth Mayya, \textbf{Rebecca Li}, et al.}
+{Coverage Control in Multi-Robot Systems via Graph Neural Networks}
+{https://arxiv.org/abs/2109.15278}
+{IEEE International Conference on Robotics and Automation (ICRA)}
+{2022}
+
+\resumePublication
+{\textbf{Rebecca Li*}, et al,}
+{Robust, Perception Based Control with Quadrotors}
+{https://arxiv.org/abs/2007.04220}
+{IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}
+{2020}
+
+\resumePublication
+{Dinesh Thakur, Yuezhan Tao, \textbf{Rebecca Li}, Alex Zhou, Vijay Kumar and Aleksandr Kushleyev,}
+{Swarm of Inexpensive Heterogeneous Micro Aerial Vehicles}
+{https://www.semanticscholar.org/paper/Swarm-of-Inexpensive-Heterogeneous-Micro-Aerial-Thakur-Tao/a5f82de78ca2e0ae5518d6afac6258ddccfdb1d2}
+{International Symposium on Experimental Robotics (ISER)}
+{2020}
+
+\resumePublication
+{Damon Vander Lind and \textbf{Rebecca Li},}
+{Attached rocket parachute deployment system}
+{}
+{U.S. Patent 10,507,929}
+{2019}
+
+\end{hangparas}
+\vspace{0.5em}
+
+%----------------------------- SKILLS --------------------------------------
+\section{Skills}
+\resumeSubHeadingListStart
+%
+\resumeSkill
+{Programming Languages}
+{Python, \CC, Haskell, MATLAB, \LaTeX}
+
+\resumeSkill
+{Software}
+{Siemens NX, Solidworks, git, docker, CI (Jenkins, Github Actions), Linux, ROS, TensorFlow/PyTorch, Adobe Photoshop/Lightroom, Microsoft Word/Excel/Powerpoint, Google Suite, WordPress, GCP.}
+\resumeSubHeadingListEnd
+
+%----------------------------- LEADERSHIP ----------------------------------
+\section{Leadership}
+\begin{itemize}[leftmargin=*,nolistsep, noitemsep]\small
+%
+\resumeLeadership{Founder - \href{https://mar-designs.com}{MAR Designs}. Developed robotic orthotic for treatment of pediatric cerebral palsy, won Wharton Startup Challenge Innovation Award, the Rothberg Catalyzer Hackathon, and Penn I-Corps. \textit{2020.}}
+%
+\resumeLeadership{Seminar and knowledge Lead for Nuclear Energy group in Work On Climate \textit{2020}}
+%
+\resumeLeadership{President of the Mechanical Engineering Graduate Association (MEGA), UPenn. \textit{2019 -- 2020}}
+%
+\resumeLeadership{President of the MIT Electronic Research Society (MITERS). \textit{2016}}
+%
+\resumeLeadership{Founder of MIT Combat Robotics Club, Co-Captain of BattleBots team for \textit{The Dentist}. \textit{2016}}
+%
+\resumeLeadership{Teaching Assistant: Advanced Robotics (Graduate), Electronics for Mechanical Systems (Undergraduate), Introduction to Robotics (Undergraduate).}
+%
+\resumeLeadership{Mentoring: \href{https://www.yufangzhou.xyz/}{Undergraduate Researcher Fangzhou Yu (now at \href{https://rai-inst.com/}{RAI})}, Make Learning Labs, MIT Educational Studies Program}
+
+\end{itemize}
+
+\end{document}
+
+%===========================================================================
+%  ARCHIVE — everything below \end{document} is ignored by LaTeX and by
+%  _scripts/build_cv.py. Retired sections kept for reuse.
+%===========================================================================
+%
+% \section{Outreach \& Mentoring}
+% \begin{itemize}[leftmargin=*,nolistsep, noitemsep]\small
+% 	\itemAndDate{Mentor for Make Learning Labs}{2021}
+% 	\itemAndDate{Host for Learning Group nuclear in Work On Climate community}{2021}
+% 	\itemAndDate{Mentored 3 Undergraduate Researchers, University of Pennsylvania}{2019 -- 2021}
+% 	\itemAndDate{Speaker and Panelist for Girls Advancing in Stem (GAINS) Conference}{2019}
+% 	\itemAndDate{Teacher for MIT Educational Studies Program (ESP)}{2015 \& 2016}
+% 	\itemAndDate{Helper for Despensa de la Paz Food Pantry}{2012 -- 2013}
+% \end{itemize}
+%
+% \section{Teaching}
+% \resumeSubHeadingListStart
+% \resumeSubItem{Graduate Teaching Assistant (University of Pennsylvania)}
+% {MEAM 620 Advanced Robotics}
+% \resumeSubItem{Undergraduate Teaching Assistant (MIT)}
+% {2.678 Electronics for Mechanical Systems; 2.12 Introduction to Robotics}
+% \resumeSubHeadingListEnd
+%
+% Awards:
+%   Wharton Startup Challenge Innovation Award (Entrepreneurship competition - \$25k)
+%   Rothberg Catalyzer 1st Place (Medical device hackathon - \$10k)
+%   Y-Prize Finalist (Entrepreneurship competition - \$1.5k)
+%   Penn NSF I-Corps (market research)
+%
+% Jobs:
+%   Voxel8 Inc. - Mechanical Engineering Intern, Cambridge MA, Summer 2015.
+%     Designed 3D printed hearing aid. Improved 3D printer firmware and slicing.
+%   MIT Center for Bits and Atoms - Undergraduate Researcher, Cambridge MA, Winter 2014.
+%     Designed modular cardboard gantry for manufacturing with only rapid prototyping tools.
+%
+% Publications:
+%   Rebecca Li and Bayley Wang, ``MITERS: Lessons from 40 years of student-run
+%   shop space and community," International Symposium on Academic Makerspaces, 2016.
+%
+% Projects:
+%   Emergency naloxone dispenser — mechanical design for an outdoor emergency
+%     naloxone dispenser as a senior capstone project, Spring 2017.
+%   BattleBots — led a team of undergraduates and graduate students to create a
+%     250lb robot with a 200kJ spinning weapon for the TV show, Spring 2016.
+%   3-in-1 Motor controller — developed a three-in-one motor controller on one
+%     board for autonomous go-kart racing or combat robotics, Spring 2015.

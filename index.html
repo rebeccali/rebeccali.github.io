@@ -1,0 +1,68 @@
+---
+layout: default
+data: home
+---
+{%- assign profile = site.data.profile -%}
+{%- assign home = site.data.home -%}
+
+<div class="page">
+
+<header class="masthead">
+  <img class="portrait" src="{{ profile.portrait | relative_url }}" alt="{{ profile.portrait_alt }}">
+  <div>
+    <h1>{{ profile.name }}</h1>
+    <p class="tagline">{{ profile.tagline }}</p>
+    {% include links.html keys=home.masthead.links %}
+    <p class="cta">
+      <a class="pdf-button" href="{{ profile.links.cv.url | relative_url }}">{{ home.masthead.cta.pdf }}</a>
+      <a class="text-button" href="{{ '/cv/' | relative_url }}">{{ home.masthead.cta.full }}</a>
+    </p>
+  </div>
+</header>
+
+<main>
+
+<section id="about">
+  <p class="lede">{{ home.about.lede }}</p>
+
+  {% for paragraph in home.about.paragraphs %}
+  <p>{{ paragraph }}</p>
+  {% endfor %}
+
+  {%- if home.about.availability %}
+  <p class="availability">{{ home.about.availability }}</p>
+  {%- endif %}
+</section>
+
+<section id="highlights">
+  <h2>{{ home.highlights.heading }}</h2>
+
+  <ul class="orgs">
+    {%- for item in home.highlights.items %}
+    {%- assign org = site.data.orgs[item.org] %}
+    <li>
+      {% include logo.html org=item.org %}
+      <div class="org-text">
+        {%- assign org_name = item.name | default: org.name %}
+        <span class="org-name">{% if org.url %}<a href="{{ org.url }}">{{ org_name }}</a>{% else %}{{ org_name }}{% endif %}</span>
+        <span class="org-role">{{ item.role }}</span>
+      </div>
+      <span class="when">{{ item.when }}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+
+  <p class="more"><a href="{{ '/cv/' | relative_url }}">{{ home.highlights.more }}</a></p>
+</section>
+
+<section id="contact">
+  <h2>{{ home.contact.heading }}</h2>
+  <p>{{ home.contact.intro }}</p>
+  {% include links.html keys=home.contact.links long=true %}
+</section>
+
+</main>
+
+{% include footer.html %}
+
+</div>

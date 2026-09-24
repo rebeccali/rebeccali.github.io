@@ -1,0 +1,21 @@
+{%- comment -%}
+  A <ul class="links"> of the links in _data/profile.yml.
+
+    keys  link keys, in the order they should appear — a YAML list
+          (as in _data/home.yml) or a space-separated string
+    long  "true" to prefer label_long where a link has one
+
+  {% include links.html keys="email github linkedin" %}
+{%- endcomment -%}
+{%- assign keys = include.keys -%}
+{%- if keys.first == nil -%}{%- assign keys = keys | split: ' ' -%}{%- endif -%}
+<ul class="links">
+  {%- for key in keys -%}
+    {%- assign link = site.data.profile.links[key] -%}
+    {%- if link -%}
+      {%- assign label = link.label -%}
+      {%- if include.long and link.label_long -%}{%- assign label = link.label_long -%}{%- endif -%}
+  <li><a href="{{ link.url | relative_url | escape }}">{{ label }}</a></li>
+    {%- endif -%}
+  {%- endfor %}
+</ul>

@@ -1,0 +1,54 @@
+# Content of the home page (index.html). Prose may contain inline HTML —
+# it is written into the page as-is, not escaped.
+
+masthead:
+  # Keys from links: in _data/profile.yml.
+  links: [email, github, linkedin, google_scholar]
+  cta:
+    pdf: CV (PDF)
+    full: Experience →
+
+about:
+  lede: >-
+    I build technology tackling climate change. For the last four years that meant plasma cameras 
+    (ask me about bolometry!)
+    with the SPARC Diagnostics team at Commonwealth Fusion Systems. Before that,
+    I worked on robots - surgical simulation, quadrotor swarms, and flight controls for electric aircraft.
+  paragraphs:
+    - >-
+      I want a world resilient to climate change, where people flourish in work, in play,
+      and in community. My piece of that is making cutting-edge tech into cheap-and-robust tech.
+  # Optional key for job search.
+  availability: >-
+    <strong>I'm looking for my next role developing climate technology</strong> (ideally early-stage, ideally near Boston, MA).
+    If you'd like to chat, <a href="#contact">drop me a line</a>.
+
+highlights:
+  heading: Where I've worked
+  # `org` keys into _data/orgs.yml, which supplies the name, logo and link.
+  items:
+    - org: cfs
+      role: Senior Diagnostician — Bolometry for SPARC
+      when: 2022 – 2026
+    - org: vicarious
+      role: Robotics Software Engineer — Surgical simulation
+      when: 2021 – 2022
+    - org: deepmind
+      role: Research Scientist Intern — RL on robotic actuation
+      when: 2021
+    - org: grasp
+      name: Penn GRASP Lab          # shorter than the registry name, which the CV uses
+      role: Masters Research — UAV control + Swarms
+      when: 2018 – 2021
+    - org: kittyhawk
+      role: Controls Engineer — Electric VTOL aircraft
+      when: 2016 – 2018
+    - org: medialab
+      role: Undergraduate Researcher — Tactile VR actuators
+      when: 2014 – 2017
+  more: Full CV, publications and projects →
+
+contact:
+  heading: Contact
+  intro: The best way to reach me is email.
+  links: [email, linkedin]

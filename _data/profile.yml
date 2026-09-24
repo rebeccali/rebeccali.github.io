@@ -1,0 +1,47 @@
+# Who the site is about. Everything here is identity, not layout:
+# change a value and it updates in the <head>, the masthead, and the footer.
+#
+# This file (and the other _data files) hot-reloads under `jekyll serve`.
+# _config.yml does not, which is why the content lives here.
+
+name: Rebecca Li
+tagline: Robotics · Fusion Energy · Climate Tech
+description: >-
+  I build hardware that tackles climate change — bolometry for the SPARC tokamak at Commonwealth Fusion Systems, and robots before that.
+
+# Portrait. Used by the masthead and as the Open Graph / Twitter card image.
+portrait: /assets/img/rmli_headshot_2026.png
+portrait_alt: Rebecca Li
+
+# Browser chrome colours, matched to the two themes in assets/css/site.css.
+theme_color:
+  light: "#f4f7f3"
+  dark: "#2b1d25"
+
+favicon: /assets/img/favicon/favicon.ico
+
+# Every outbound link about me, in one place. `_includes/links.html` renders a
+# subset by key, e.g. {% include links.html keys="email github linkedin" %}.
+#
+#   label       the link text
+#   label_long  used instead of `label` where there is room to spell it out
+#
+# The CV buttons on both pages read links.cv.url, so bumping the PDF filename
+# here is the only change needed after a new CV is copied in.
+links:
+  email:
+    url: mailto:make@rebecca.li
+    label: make@rebecca.li
+  linkedin:
+    url: https://www.linkedin.com/in/rebecca-li-15285378/
+    label: LinkedIn
+  google_scholar:
+    url: https://scholar.google.com/citations?user=PAxyimoAAAAJ&hl=en
+    label: Google Scholar
+  github:
+    url: https://github.com/rebeccali
+    label: GitHub
+    label_long: github.com/rebeccali
+  cv:
+    url: /assets/cv-rebecca-li-2026-05.pdf
+    label: CV (PDF)

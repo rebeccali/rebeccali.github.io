@@ -1,0 +1,74 @@
+# Logo registry. Each entry renders through _includes/logo.html.
+#
+#   logo:  filename in assets/img/logos/ — drawn as an image
+#   mono:  1–3 letters, used when there is no logo file
+#   tint:  optional background for the monogram tile. Two constraints:
+#          at least 4.5:1 against porcelain (#f4f7f3, the mark colour), and
+#          mid-luminance so the tile separates from BOTH page backgrounds.
+#          Midnight-violet failed the second test - at 1.2:1 against the dark
+#          background the tile disappeared.
+#
+# To add a real logo later: drop a square PNG/SVG into assets/img/logos/
+# and add a `logo:` line here. Nothing else needs to change.
+
+cfs:
+  name: Commonwealth Fusion Systems
+  url: https://cfs.energy
+  logo: cfs.svg
+  # Kept as a fallback if the file ever goes missing; ignored while `logo` is set.
+  mono: CFS
+  tint: "#a34e41"  # deepened burnt-peach - 5.2:1
+
+vicarious:
+  name: Vicarious Surgical
+  url: https://www.vicarioussurgical.com
+  logo: vicarious.svg
+  # Kept as a fallback if the file ever goes missing; ignored while `logo` is set.
+  mono: VS
+  tint: "#7a5c68"  # lightened midnight-violet - 5.5:1
+
+deepmind:
+  name: DeepMind
+  url: https://deepmind.google
+  logo: deepmind.png
+
+grasp:
+  name: University of Pennsylvania, GRASP Lab
+  url: https://www.grasp.upenn.edu
+  logo: upenn.png
+
+kittyhawk:
+  name: Kitty Hawk
+  # No url - the company is gone and kittyhawk.aero no longer resolves. An org
+  # without a url renders as plain text rather than a link.
+  logo: kittyhawk.png
+
+medialab:
+  name: MIT Media Lab
+  url: https://media.mit.edu
+  logo: mit-media-lab.png
+
+upenn:
+  name: University of Pennsylvania
+  url: https://www.upenn.edu
+  logo: upenn.png
+
+mit:
+  name: MIT
+  url: https://www.mit.edu
+  logo: mit.png
+
+mardesigns:
+  name: MAR Designs
+  mono: MAR
+  tint: "#4e6e58"  # deep-teal - 5.3:1
+
+combatrobotics:
+  name: MIT Combat Robotics
+  mono: TD
+  tint: "#864640"  # deep warm - 6.6:1
+
+workonclimate:
+  name: Work On Climate
+  url: https://workonclimate.org
+  logo: work-on-climate.png
